@@ -18,8 +18,8 @@
     <div class="row">
         <div class="col text-right">
           <!-- Updated on field goes in here -->
-
-          <p class="text-end"><em>Updated on: {{ about.updated_on }}</em></p>
+          <!-- There should be only 1 about entry -->
+          <p class="text-end"><em>Updated on: {{ about.0.updated_on }}</em></p>
         </div>
       </div>
       <div class="row justify-content-center">
