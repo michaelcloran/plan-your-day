@@ -7,6 +7,8 @@
 {% if user.is_authenticated %}
 <div class="container-fluid">
     <div class="row">
+        <button class="btn right btn-addtask"  type="button">Add Task</button>
+        <a href="{% url 'categories' %}" class="btn right">Categories</a>
         <!-- Task Entries Column -->
         <div class="col-12 mt-3 left">
             <div class="row d-flex justify-content-center align-content-center">
@@ -22,7 +24,7 @@
                                     <p class="author">Author: {{ task.author }}</p>
                                 </div>
                             </div>
-                            <h2 class="card-title justify-content-center align-content-center">{{ task.task_name }}</h2>
+                            <h2 class="card-title">{{ task.task_name }}</h2>
                                 <p class="crd-text">
                                     {{ task.task_description }}
                                 </p>
