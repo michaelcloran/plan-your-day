@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+
+<div class="container mt-5">
+    <div class="row">
+
+        <div class="col-8">
+            {% for item in about %}
+            <h2>{{ item.title }}</h2>
+            {{ item.content | safe }}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-right">
+          <!-- Updated on field goes in here -->
+
+          <p class="text-end"><em>Updated on: {{ about.updated_on }}</em></p>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-6 my-5">
+            <h2>Contact Site admin</h2>
+            <p>If you feel like reaching out by all means fill
+                in the form below and submit it and we can take
+                it from there!!</p>
+
+            <!-- add your form here. Your submit button should
+                                have the classes of btn, btn-secondary -->
+            <form method="post">
+                {{ contact_form | crispy}}
+                {% csrf_token %}
+                <button class="btn btn-secondary" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
