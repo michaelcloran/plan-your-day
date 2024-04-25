@@ -5,6 +5,7 @@
 
 {% if user.is_authenticated %}
 <div class="container h-100">
+    <a href="{% url 'category' %}" class="btn btn-outline-primary right">Add Category</a>
     <!-- Displaying categories -->
   <div class="row d-flex justify-content-center align-content-center h-100">
     <div class="col-12  ">

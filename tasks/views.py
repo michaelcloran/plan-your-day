@@ -1,11 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.views import generic
-from django.shortcuts import redirect, render, get_object_or_404, reverse
-from .models import Category, Tasks
-from django.conf import settings
-from .forms import CategoriesForm
+from django.shortcuts import redirect
 from django.contrib import messages
+from .models import Category, Tasks
+
+from .forms import CategoriesForm
 
 
 # Create your views here.
@@ -25,28 +23,51 @@ def home_view(request):
     )
 
 def categories_listing(request):
-   categories = Category.objects.all()
-    #    post = get_object_or_404(categories)
+    categories = Category.objects.all()
 
-    #    if request.method == "POST":
-    #       category_form = CategoriesForm(data=request.POST)
-    #       if category_form.is_valid():
-    #          cat = category_form.save(commit=False)
-    #          cat.author = request.user
-    #          cat.post = post
-    #          cat.save()
-    #          messages.add_message(
-    #             request, messages.SUCCESS,
-    #             'Category submitted'
-    #          )
+    return render(
+        request,
+        "tasks/categories.html",
+        {
+        "categories": categories,
+        },
+    )
 
-    #    category_form = CategoriesForm()
+def category_listing(request):
+    categories = Category.objects.all()
 
-   return render(
-      request,
-      "tasks/categories.html",
-      {
-       "categories": categories,
+    category_form = CategoriesForm()
 
-       },
-   )
+    return render(
+        request,
+        "tasks/add_category.html",
+        {
+        "category_form": category_form,
+        },
+    )
+
+
+def add_category(request, foo):
+
+    if request.method == "POST":
+        print("IN POST")
+        category_form = CategoriesForm(data=request.POST)
+        if category_form.is_valid():
+            new_cat = None
+            new_cat = category_form.save(commit=False)
+            new_cat.author = request.user
+            new_cat.save()
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Category submitted and awaiting approval'
+            )
+
+    category_form = CategoriesForm()
+
+    return render(
+        request,
+        "tasks/add_category.html",
+        {
+        "category_form": category_form,
+        },
+    )
