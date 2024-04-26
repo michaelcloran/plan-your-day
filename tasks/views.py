@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render
 from django.shortcuts import redirect
 from django.contrib import messages
+from django.urls import reverse
 from .models import Category, Tasks
 
 from .forms import CategoriesForm
@@ -48,9 +50,8 @@ def category_listing(request):
 
 
 def add_category(request, foo):
-
+    category_form = None
     if request.method == "POST":
-        print("IN POST")
         category_form = CategoriesForm(data=request.POST)
         if category_form.is_valid():
             new_cat = None
@@ -62,7 +63,7 @@ def add_category(request, foo):
                 'Category submitted and awaiting approval'
             )
 
-    category_form = CategoriesForm()
+            category_form = CategoriesForm()
 
     return render(
         request,
@@ -71,3 +72,117 @@ def add_category(request, foo):
         "category_form": category_form,
         },
     )
+
+def post_detail(request, slug):
+   """ Display an individual: model:`tasks.Category`
+
+   **Context**
+
+   ``post``
+      an instance of :model:`tasks.Category`.
+   ``comments``
+      all approved categories related to a post
+   ``category_count``
+      a count of approved categories related to the category
+   ``category_form``
+      an instance of :form:`tasks.CategoryForm`
+
+   **Template:**
+   :template: `tasks/post_detail.html`
+   """
+
+   queryset = Category.objects.all()
+   post = get_object_or_404(queryset, slug=slug)
+
+   comments = post.categories.all().order_by("-created_on")
+   comment_count = post.categories.all().count()
+
+   if request.method == "POST":
+      category_form = CategoryForm(data=request.POST)
+      if category_form.is_valid():
+         category = category_form.save(commit=False)
+         category.author = request.user
+         category.post = post
+         category.save()
+         messages.add_message(
+            request, messages.SUCCESS,
+            'Category submitted and awaiting approval'
+         )
+
+   category_form = CommentForm()
+
+   return render(
+      request,
+      "tasks/post_detail.html",
+      {"post": post,
+       "categories": categories,
+       "category_count": category_count,
+       "category_form": category_form,
+       },
+   )
+
+def category_edit(request, slug, comment_id):
+    """
+    Display and individual category for edit
+
+    **Context**
+
+    ``post``
+      an instance of :model:`tasks.Category`
+   ``category``
+      a single category related to the post
+   ``category_form``
+      an instance of :form:`tasks.CategoryForm`
+    """
+    if request.method == "POST":
+
+        categories = Category.objects.all()
+        post = get_object_or_404(categories, slug=slug)
+        category = get_object_or_404(Category, pk=comment_id)
+        category_form = CategoriesForm(data=request.POST, instance=category)
+
+        if category_form.is_valid() and category.author == request.user:
+            category = category_form.save(commit=False)
+            category.post = post
+            category.approved = False
+            category.save()
+            messages.add_message(request, messages.SUCCESS, 'Category Updated!')
+        else:
+            messages.add_message(request, messages.ERROR, 'Error updating category!')
+
+    return render(
+        request,
+        "tasks/categories.html",
+        {'categories':categories,},
+    )
+    #return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+
+
+def category_delete(request, category_id):
+    """
+    Delete an individual category
+
+    **context**
+
+    ``post``
+        an instance of :model:`tasks.Category`
+    ``category``
+        a single category
+    """
+    categories = Category.objects.all()
+    # post = get_object_or_404(queryset, slug=slug)
+    category = get_object_or_404(Category, pk=category_id)
+
+    if category.author == request.user:
+        category.delete()
+        messages.add_message(request, messages.SUCCESS, 'Category deleted!')
+    else:
+        messages.add_message(request, messages.ERROR, 'You can only delete your own categories!')
+
+    categories = Category.objects.all()
+    return render(
+        request,
+        "tasks/categories.html",
+        {'categories':categories,},
+    )
+
