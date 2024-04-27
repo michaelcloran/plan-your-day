@@ -181,9 +181,10 @@ def category_delete(request, category_id):
         messages.add_message(request, messages.ERROR, 'You can only delete your own categories!')
 
     categories = Category.objects.all()
-    return render(
-        request,
-        "tasks/categories.html",
-        {'categories':categories,},
-    )
+    # return render(
+    #     request,
+    #     "tasks/categories.html",
+    #     {'categories':categories,},
+    # )
+    return HttpResponseRedirect(reverse('categories'))
 
