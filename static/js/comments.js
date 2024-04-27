@@ -1,5 +1,4 @@
-//const editButtons = document.getElementsByClassName("btn-edit");
-//const categoryText = document.getElementById("modal-body");
+
 const categoryForm = document.getElementById("categoryForm");
 const submitButton = document.getElementById("submitButton");
 
@@ -24,16 +23,18 @@ const deleteConfirm = document.getElementById("deleteConfirm");
 * - Sets the form's action attribute to the `edit_comment/{commentId}` endpoint.
 */
 for (let button of editButtons) {
-  button.addEventListener("click", (e) => {
+button.addEventListener("click", (e) => {
+
     let categoryId = e.target.getAttribute("data-category_id");
+
     let categoryContent = document.getElementById(`category${categoryId}`).innerText;
     editModal.show();
 
     categoryText.value = categoryContent;
 
     editConfirm.addEventListener("click", (e) => {
-      categoryContent = document.getElementById(`category${categoryId}`).innerText;
       editForm.action=`edit_category/${categoryId}`;
+
       editForm.submit();
     });
     editCancel.addEventListener("click", (e) => {
