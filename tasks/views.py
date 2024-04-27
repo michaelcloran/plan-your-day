@@ -121,41 +121,42 @@ def post_detail(request, slug):
        },
    )
 
-def category_edit(request, slug, comment_id):
+def category_edit(request, category_id):
     """
     Display and individual category for edit
 
     **Context**
 
-    ``post``
-      an instance of :model:`tasks.Category`
+
    ``category``
-      a single category related to the post
+      a single category related to the POST
    ``category_form``
       an instance of :form:`tasks.CategoryForm`
     """
     if request.method == "POST":
 
         categories = Category.objects.all()
-        post = get_object_or_404(categories, slug=slug)
-        category = get_object_or_404(Category, pk=comment_id)
+
+        category = get_object_or_404(Category, pk=category_id)
         category_form = CategoriesForm(data=request.POST, instance=category)
+        print("TP1:", category_form)
 
         if category_form.is_valid() and category.author == request.user:
             category = category_form.save(commit=False)
-            category.post = post
+            #category.post = category
             category.approved = False
             category.save()
             messages.add_message(request, messages.SUCCESS, 'Category Updated!')
         else:
             messages.add_message(request, messages.ERROR, 'Error updating category!')
 
-    return render(
-        request,
-        "tasks/categories.html",
-        {'categories':categories,},
-    )
-    #return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+    categories = Category.objects.all()
+    # return render(
+    #     request,
+    #     "tasks/categories.html",
+    #     {'categories':categories,},
+    # )
+    return HttpResponseRedirect(reverse('categories'))
 
 
 def category_delete(request, category_id):

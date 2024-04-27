@@ -1,7 +1,13 @@
-const editButtons = document.getElementsByClassName("btn-edit");
+//const editButtons = document.getElementsByClassName("btn-edit");
 //const categoryText = document.getElementById("modal-body");
 const categoryForm = document.getElementById("categoryForm");
 const submitButton = document.getElementById("submitButton");
+
+const editModal = new bootstrap.Modal(document.getElementById("editModal"));
+const editButtons = document.getElementsByClassName("btn-edit");
+const editConfirm = document.getElementById("update");
+const editCancel = document.getElementById("cancel");
+const categoryText = document.getElementById("id_category_name");
 
 const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
 const deleteButtons = document.getElementsByClassName("btn-delete");
@@ -19,15 +25,21 @@ const deleteConfirm = document.getElementById("deleteConfirm");
 */
 for (let button of editButtons) {
   button.addEventListener("click", (e) => {
-    console.log("TP1");
     let categoryId = e.target.getAttribute("data-category_id");
-    console.log("TP2:"+categoryId);
     let categoryContent = document.getElementById(`category${categoryId}`).innerText;
-    console.log("TP3:"+categoryContent);
-    console.log("TP4:"+categoryText);
+    editModal.show();
+
     categoryText.value = categoryContent;
-    submitButton.innerText = "Update";
-    commentForm.setAttribute("action", `edit_category/${categoryId}`);
+
+    editConfirm.addEventListener("click", (e) => {
+      categoryContent = document.getElementById(`category${categoryId}`).innerText;
+      editForm.action=`edit_category/${categoryId}`;
+      editForm.submit();
+    });
+    editCancel.addEventListener("click", (e) => {
+      console.log("cancel clicked");
+      editForm.submit();
+    });
   });
 }
 

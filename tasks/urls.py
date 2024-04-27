@@ -8,7 +8,7 @@ urlpatterns = [
     path('add_category/<str:foo>/',add_category, name='add_category' ),
 
     path('<slug:slug>/', post_detail, name='post_detail'),
-    path('<slug:slug>/edit_category/<int:category_id>',
+    path('categories/edit_category/<int:category_id>',
          category_edit, name='category_edit'),
 
     path('categories/delete_category/<int:category_id>',
