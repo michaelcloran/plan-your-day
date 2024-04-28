@@ -13,13 +13,14 @@
         <a href="{% url 'categories' %}" class="btn btn-outline-primary right">Categories</a>
         <!-- Task Entries Column -->
         <div class="col-12 mt-3 left">
-            <div class="row d-flex justify-content-center align-content-center">
+
 
                 {% for task in tasks %}
                 {% if user == task.author %}
                 {% now "Y-m-d" as todays_date %}
 
                 {% if task.date|date:"Y-m-d" == todays_date  %}
+                <div class="row d-flex justify-content-center align-content-center">
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <div class="card-body task-container">
@@ -52,13 +53,13 @@
                         </div>
                     </div>
                 </div>
-                {% if forloop.counter|divisibleby:3 %}
             </div>
             <div class="row">
-                {% endif %}
+
                 {% endif %}
                 {% endif %}
                 {% endfor %}
+
 
             </div>
         </div>
@@ -110,7 +111,7 @@
 
             <label for="id_date" class="form-label requiredField">
                 Date<span class="asteriskField">*</span> </label>
-            <input type="text" name="date" class="dateinput form-control" required id="id_date">
+            <input type="date" name="date" class="dateinput form-control" required id="id_date">
 
             <label for="id_start_time" class="form-label requiredField">
                 Start time<span class="asteriskField">*</span> </label>
