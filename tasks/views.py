@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.urls import reverse
 from .models import Category, Tasks
 
-from .forms import CategoriesForm
+from .forms import CategoriesForm, TasksForm
 
 
 # Create your views here.
@@ -48,6 +48,18 @@ def category_listing(request):
         },
     )
 
+def task_listing(request):
+    tasks = Tasks.objects.all()
+
+    task_form = TasksForm()
+
+    return render(
+        request,
+        "tasks/add_task.html",
+        {
+        "task_form": task_form,
+        },
+    )
 
 def add_category(request, foo):
     category_form = None
@@ -60,7 +72,7 @@ def add_category(request, foo):
             new_cat.save()
             messages.add_message(
                 request, messages.SUCCESS,
-                'Category submitted and awaiting approval'
+                'Category submitted'
             )
 
             category_form = CategoriesForm()
@@ -70,6 +82,30 @@ def add_category(request, foo):
         "tasks/add_category.html",
         {
         "category_form": category_form,
+        },
+    )
+
+def add_task(request, foo):
+    task_form = None
+    if request.method == "POST":
+        task_form = TasksForm(data=request.POST)
+        if task_form.is_valid():
+            new_task = None
+            new_task = task_form.save(commit=False)
+            new_task.author = request.user
+            new_task.save()
+            messages.add_message(
+                request, messages.SUCCESS,
+                'task submitted'
+            )
+
+            task_form = TasksForm()
+
+    return render(
+        request,
+        "tasks/add_task.html",
+        {
+        "task_form": task_form,
         },
     )
 

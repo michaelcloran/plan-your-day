@@ -22,7 +22,7 @@ class Category(models.Model):
 
 
 class Tasks(models.Model):
-    slug = models.SlugField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200, unique=True, default=randomString)
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="task_post"
     )
