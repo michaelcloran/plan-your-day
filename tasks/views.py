@@ -12,9 +12,11 @@ from .forms import CategoriesForm, TasksForm
 def home_view(request):
 
     tasks = Tasks.objects.all()
+    categories = Category.objects.all()
 
     context = {
-        'tasks':tasks
+        'tasks':tasks,
+        "categories": categories,
     }
     if not request.user.is_authenticated:
         return redirect(f"{'account_login'}")
@@ -53,10 +55,13 @@ def task_listing(request):
 
     task_form = TasksForm()
 
+
     return render(
         request,
         "tasks/add_task.html",
         {
+
+        "tasks": tasks,
         "task_form": task_form,
         },
     )
@@ -194,6 +199,43 @@ def category_edit(request, category_id):
     # )
     return HttpResponseRedirect(reverse('categories'))
 
+def task_edit(request, task_id):
+    """
+    Display and individual category for edit
+
+    **Context**
+
+
+   ``category``
+      a single category related to the POST
+   ``category_form``
+      an instance of :form:`tasks.CategoryForm`
+    """
+    if request.method == "POST":
+
+        tasks = Tasks.objects.all()
+
+        task = get_object_or_404(Tasks, pk=task_id)
+        task_form = TasksForm(data=request.POST, instance=task)
+        print("TP1:", task_form)
+
+        if task_form.is_valid() and task.author == request.user:
+            new_task = task_form.save(commit=False)
+            #category.post = category
+            new_task.approved = False
+            new_task.save()
+            messages.add_message(request, messages.SUCCESS, 'Task Updated!')
+        else:
+            messages.add_message(request, messages.ERROR, 'Error updating task!')
+
+    tasks = Tasks.objects.all()
+    categories = Category.objects.all()
+
+    context = {
+        'tasks':tasks,
+        "categories": categories,
+    }
+    return HttpResponseRedirect(reverse('home'),context)
 
 def category_delete(request, category_id):
     """
@@ -223,4 +265,35 @@ def category_delete(request, category_id):
     #     {'categories':categories,},
     # )
     return HttpResponseRedirect(reverse('categories'))
+
+def task_delete(request, task_id):
+    """
+    Delete an individual task
+
+    **context**
+
+
+    ``task``
+        a single task
+    """
+    tasks = Tasks.objects.all()
+    # post = get_object_or_404(queryset, slug=slug)
+    task = get_object_or_404(Tasks, pk=task_id)
+
+    if task.author == request.user:
+        task.delete()
+        messages.add_message(request, messages.SUCCESS, 'Task deleted!')
+    else:
+        messages.add_message(request, messages.ERROR, 'You can only delete your own tasks!')
+
+    categories = Category.objects.all()
+    tasks = Tasks.objects.all()
+
+
+    context = {
+        'tasks':tasks,
+        "categories": categories,
+    }
+
+    return HttpResponseRedirect(reverse('home'),context)
 

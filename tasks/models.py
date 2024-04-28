@@ -17,7 +17,7 @@ class Category(models.Model):
 
 
     def __str__(self):
-        return f"{self.category_name} | written by {self.author}"
+        return f"{self.category_name}"
 
 
 
@@ -39,4 +39,4 @@ class Tasks(models.Model):
 
 
     def __str__(self):
-        return f"{self.task_name} | written by {self.author}"
+        return f"{self.task_name}"

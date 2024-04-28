@@ -3,6 +3,8 @@
 
 {% block content %}
 
+{% load crispy_forms_tags %}
+
 <!-- index.html content starts here -->
 {% if user.is_authenticated %}
 <div class="container-fluid">
@@ -15,31 +17,34 @@
 
                 {% for task in tasks %}
                 {% if user == task.author %}
+                {% now "Y-m-d" as todays_date %}
+
+                {% if task.date|date:"Y-m-d" == todays_date  %}
                 <div class="col-md-4">
                     <div class="card mb-4">
-                        <div class="card-body">
+                        <div class="card-body task-container">
                             <div class="image-container">
 
                                 <div class="image-flash">
                                     <p class="author">Author: {{ task.author }}</p>
                                 </div>
                             </div>
-                            <h2 class="card-title">{{ task.task_name }}</h2>
-                                <p class="crd-text">
+                                <h2 class="card-title task-name">{{ task.task_name }}</h2>
+                                <p class="crd-text task-description">
                                     {{ task.task_description }}
                                 </p>
-                                <p class="srd-text">
-                                    {{task.date}}
+                                <p class="srd-text task-misc">
+                                    <span class="task-date">{{task.date|date:"Y-m-d"}}</span> Category:<strong class="task-category">{{task.category_id}}</strong>
                                 </p>
-                                <p class="srd-text">
-                                    start time {{task.start_time}}
-                                    end time {{ task.end_time}}
+                                <p class="srd-text task-start-end-time">
+                                    start time <span class="task-start">{{task.start_time|date:"H:i"}}</span>
+                                    end time <span class="task-end">{{ task.end_time|date:"H:i"}}</span>
                                 </p>
 
-                                <button class="btn btn-delete"
-                                    data-category_id="{{ task.id }}">Delete</button>
-                                <button class="btn btn-edit"
-                                    data-category_id="{{ task.id }}">Edit</button>
+                                <button class="btn btn-delete btn-delete-task"
+                                    data-task_id="{{ task.id }}">Delete</button>
+                                <button class="btn btn-edit btn-edit-task"
+                                    data-task_id="{{ task.id }}">Edit</button>
 
                             <hr />
                             <p class="card-text text-muted h6">{{ task.created_on}}
@@ -50,6 +55,7 @@
                 {% if forloop.counter|divisibleby:3 %}
             </div>
             <div class="row">
+                {% endif %}
                 {% endif %}
                 {% endif %}
                 {% endfor %}
@@ -70,9 +76,93 @@
     </nav>
     {% endif %}
 </div>
+<!-- update tasks modal-->
+<div class="modal" id="editTaskModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Update Task</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <form name="editTaskForm" method="POST">
+        <div class="modal-body">
+
+            <label for="id_category_id" class="form-label requiredField"> Category id<span class="asteriskField">*</span></label>
+            <select name="category_id" class="select form-select" required id="id_category_id">
+
+                {% for category in categories%}
+                <option value="{{category.id}}">{{category.category_name}}</option>
+                {% endfor %}
+            </select>
+            <label for="id_task_name" class="form-label requiredField">Task name<span class="asteriskField">*</span></label>
+            <input type="text" name="task_name" maxlength="50" class="textinput form-control" required id="id_task_name">
+
+            <label for="id_task_description" class="form-label requiredField">Task description<span class="asteriskField">*</span></label>
+            <textarea name="task_description" cols="40" rows="10" class="textarea form-control" required id="id_task_description"></textarea>
+
+            <input type="checkbox" name="is_urgent" class="checkboxinput form-check-input" id="id_is_urgent">
+            <label for="id_is_urgent" class="form-check-label">
+                Is urgent
+            </label><br>
+
+            <label for="id_date" class="form-label requiredField">
+                Date<span class="asteriskField">*</span> </label>
+            <input type="text" name="date" class="dateinput form-control" required id="id_date">
+
+            <label for="id_start_time" class="form-label requiredField">
+                Start time<span class="asteriskField">*</span> </label>
+            <input type="text" name="start_time" class="timeinput form-control" required id="id_start_time">
+
+            <label for="id_end_time" class="form-label requiredField">
+                End time<span class="asteriskField">*</span> </label>
+            <input type="text" name="end_time" class="timeinput form-control" required id="id_end_time">
+
+
+            {% csrf_token %}
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="cancel" name="cancel" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" id="update" name="update" class="btn btn-primary">Update</button>
+        </div>
+      </form>
+
+      </div>
+    </div>
+  </div>
+  <!-- Delete confirmation modal -->
+<div class="modal fade" id="deleteTaskModal" tabindex="-1"
+aria-labelledby="deleteModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title"
+        id="deleteModalLabel">Delete task?</h5>
+      <button type="button" class="btn-close"
+        data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      Are you sure you want to delete your task?
+      This action cannot be undone.
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary"
+        data-bs-dismiss="modal">Close</button>
+      <a id="deleteTaskConfirm" href="#" class="btn
+        btn-danger">Delete</a>
+    </div>
+  </div>
+</div>
+</div>
 {% endif %}
 <!-- index.html content ends here -->
 {% endblock %}
 {% block copyright %}
     CopyRight 2023 Michael Cloran
+{% endblock %}
+{% block extras %}
+<script src="{% static 'js/tasks.js' %}"></script>
 {% endblock %}
