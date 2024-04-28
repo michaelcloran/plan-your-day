@@ -26,7 +26,7 @@ class Tasks(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="task_post"
     )
-    task_name = models.CharField(max_length=50, unique=True)
+    task_name = models.CharField(max_length=50)
     task_description = models.TextField()
     is_urgent = models.BooleanField(default=False)
     date = models.DateField()
@@ -35,7 +35,7 @@ class Tasks(models.Model):
     category_id = models.ForeignKey(Category, on_delete=models.CASCADE, related_name = "category")
 
     class Meta:
-        ordering = ["-date", "author"]
+        ordering = ["start_time", "author"]
 
 
     def __str__(self):
