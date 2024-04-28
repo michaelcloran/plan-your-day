@@ -5,6 +5,9 @@ const editTasksButtons = document.getElementsByClassName("btn-edit-task");
 const editConfirm = document.getElementById("update");
 const editCancel = document.getElementById("cancel");
 
+const deleteTaskButtons = document.getElementsByClassName("btn-delete-task");
+const deleteTaskModal = new bootstrap.Modal(document.getElementById("deleteTaskModal"));
+
 for (let button of editTasksButtons){
 button.addEventListener("click", (e) => {
   console.log("TP1: here");
@@ -62,4 +65,12 @@ button.addEventListener("click", (e) => {
       editTaskForm.submit();
     });
 });
+}
+
+for (let button of deleteTaskButtons) {
+  button.addEventListener("click", (e) => {
+    let taskId = e.target.getAttribute("data-task_id");
+    deleteTaskConfirm.href = `delete_task/${taskId}`;
+    deleteTaskModal.show();
+  });
 }
