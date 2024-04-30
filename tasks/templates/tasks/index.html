@@ -17,9 +17,7 @@
 
                 {% for task in tasks %}
                 {% if user == task.author %}
-                {% now "Y-m-d" as todays_date %}
 
-                {% if task.date|date:"Y-m-d" == todays_date  %}
                 <div class="row d-flex justify-content-center align-content-center">
                 <div class="col-md-4">
                     <div class="card mb-4">
@@ -56,7 +54,7 @@
             </div>
             <div class="row">
 
-                {% endif %}
+
                 {% endif %}
                 {% endfor %}
 

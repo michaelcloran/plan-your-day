@@ -148,5 +148,18 @@ Mobile
 ![Mobile Delete Task](images/images_docs/mobile_delete_task.png)
 
 
+## Some bug found while doing project
+
+- Kanban board bug
+
+![Kanban Board Issue](images/images_docs/kanban-board-issue.png)
+
+If you look very closely at above image you will notice for instance under In progress EPIC 1 above the text EPIC 1 you can see django-blog. This is the repo that the kanban board is associated with. This is confusing as in repo plan-your-day if you click on Project then this Kanban board shows up.
+
+In order to fix the above issue I had to delete all the entries in the Kanban board and as I was adding them again on a per instance basis I had to associate them with a repo plan-your-day. This was a very tricky bug and very easy to miss!!
+
+- Database Unique=True issue
+
+During my development of the database models I can across an issue where I set the category_name and task_name to unique. This seemed innocent enough as each user would have a unique set of tasks and categories. But this was not the full picture as at the database level each task_name and category_name has to be unique when the value is unique=True. So I was getting collisions when multi-user use was tested. My way of resolving the issue was to remove the unique=True from the models fields for category_name and task_name and to allow the user to manage the tasks and categories at their own discretion.
 
 

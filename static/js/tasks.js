@@ -55,6 +55,9 @@ button.addEventListener("click", (e) => {
     console.log(task_end_el[0].innerText);
     document.getElementById("id_end_time").value = task_end_el[0].innerText;
 
+
+    console.log("URL:"+window.location.href);
+
     editConfirm.addEventListener("click", (e) => {
       editTaskForm.action=`edit_task/${taskId}`;
 

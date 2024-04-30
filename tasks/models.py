@@ -8,7 +8,7 @@ def randomString():
 
 # Create your models here.
 class Category(models.Model):
-    category_name = models.CharField(max_length=25, unique=True)
+    category_name = models.CharField(max_length=25)
     slug = models.SlugField(max_length=200, unique=True,  default=randomString)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="category_post")
 

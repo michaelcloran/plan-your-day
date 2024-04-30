@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.urls import reverse
 from .models import Category, Tasks
 
-from .forms import CategoriesForm, TasksForm
+from .forms import CategoriesForm, TasksForm, TasksViewDate
 
 
 # Create your views here.
@@ -297,3 +297,34 @@ def task_delete(request, task_id):
 
     return HttpResponseRedirect(reverse('home'),context)
 
+def task_date_view_initial(request):
+    print("TP task_view_initial")
+
+    tasks = Tasks.objects.all()
+    view_date_form = TasksViewDate()
+    return render(
+        request,
+        "tasks/view-date.html",
+        {
+        'tasks':tasks,
+        'view_date_form': view_date_form,
+        },
+    )
+
+def task_date_view(request,date):
+    #print(date)
+    print("TP here")
+   # print(request.POST)
+    date = request.POST.get('date_to_view')
+
+    print(date)
+    tasks = Tasks.objects.filter(date__range=[date,date])
+    print(date)
+
+    return render(
+        request,
+        "tasks/index.html",
+        {
+        'tasks':tasks,
+        },
+    )

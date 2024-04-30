@@ -1,3 +1,4 @@
+from datetime import date
 from django import forms
 from .models import Category,Tasks
 
@@ -28,3 +29,10 @@ class TasksForm(forms.ModelForm):
         widgets = {
             'date': DateInput()
         }
+
+class TasksViewDate(forms.Form):
+    today = date.today()
+    date_to_view = forms.DateField(initial=today, required=True, widget=forms.DateInput(attrs={'type':'date'}))
+
+
+

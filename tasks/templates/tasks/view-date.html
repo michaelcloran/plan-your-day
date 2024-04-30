@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<!-- index.html content starts here -->
+{% if user.is_authenticated %}
+<div class="container-fluid">
+    <div class="row">
+        <form id="taskViewDateForm" method="POST" action="{% url 'task_date_view' 'view_date_form.POST.date_to_view' %}" >
+
+            {{view_date_form | crispy}}
+            {% csrf_token %}
+            <input type="submit" value="submit">
+        </form>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
