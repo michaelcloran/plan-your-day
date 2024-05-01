@@ -1,3 +1,5 @@
+import datetime
+from datetime import datetime
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.shortcuts import redirect
@@ -5,7 +7,7 @@ from django.contrib import messages
 from django.urls import reverse
 from .models import Category, Tasks
 
-from .forms import CategoriesForm, TasksForm, TasksViewDate
+from .forms import CategoriesForm, TasksForm, TasksViewDate, TaskStatistics
 
 
 # Create your views here.
@@ -40,7 +42,7 @@ def categories_listing(request):
 def category_listing(request):
     categories = Category.objects.all()
 
-    category_form = CategoriesForm()
+    category_form = CategoriesForm(request=request)
 
     return render(
         request,
@@ -53,7 +55,7 @@ def category_listing(request):
 def task_listing(request):
     tasks = Tasks.objects.all()
 
-    task_form = TasksForm()
+    task_form = TasksForm(request=request)
 
 
     return render(
@@ -69,7 +71,7 @@ def task_listing(request):
 def add_category(request, foo):
     category_form = None
     if request.method == "POST":
-        category_form = CategoriesForm(data=request.POST)
+        category_form = CategoriesForm(data=request.POST, request=request)
         if category_form.is_valid():
             new_cat = None
             new_cat = category_form.save(commit=False)
@@ -80,7 +82,7 @@ def add_category(request, foo):
                 'Category submitted'
             )
 
-            category_form = CategoriesForm()
+            category_form = CategoriesForm(request=request)
 
     return render(
         request,
@@ -93,7 +95,7 @@ def add_category(request, foo):
 def add_task(request, foo):
     task_form = None
     if request.method == "POST":
-        task_form = TasksForm(data=request.POST)
+        task_form = TasksForm(data=request.POST,request=request)
         if task_form.is_valid():
             new_task = None
             new_task = task_form.save(commit=False)
@@ -104,7 +106,7 @@ def add_task(request, foo):
                 'task submitted'
             )
 
-            task_form = TasksForm()
+            task_form = TasksForm(request=request)
 
     return render(
         request,
@@ -113,54 +115,6 @@ def add_task(request, foo):
         "task_form": task_form,
         },
     )
-
-def post_detail(request, slug):
-   """ Display an individual: model:`tasks.Category`
-
-   **Context**
-
-   ``post``
-      an instance of :model:`tasks.Category`.
-   ``comments``
-      all approved categories related to a post
-   ``category_count``
-      a count of approved categories related to the category
-   ``category_form``
-      an instance of :form:`tasks.CategoryForm`
-
-   **Template:**
-   :template: `tasks/post_detail.html`
-   """
-
-   queryset = Category.objects.all()
-   post = get_object_or_404(queryset, slug=slug)
-
-   comments = post.categories.all().order_by("-created_on")
-   comment_count = post.categories.all().count()
-
-   if request.method == "POST":
-      category_form = CategoryForm(data=request.POST)
-      if category_form.is_valid():
-         category = category_form.save(commit=False)
-         category.author = request.user
-         category.post = post
-         category.save()
-         messages.add_message(
-            request, messages.SUCCESS,
-            'Category submitted and awaiting approval'
-         )
-
-   category_form = CommentForm()
-
-   return render(
-      request,
-      "tasks/post_detail.html",
-      {"post": post,
-       "categories": categories,
-       "category_count": category_count,
-       "category_form": category_form,
-       },
-   )
 
 def category_edit(request, category_id):
     """
@@ -179,7 +133,7 @@ def category_edit(request, category_id):
         categories = Category.objects.all()
 
         category = get_object_or_404(Category, pk=category_id)
-        category_form = CategoriesForm(data=request.POST, instance=category)
+        category_form = CategoriesForm(data=request.POST, instance=category,request=request)
         print("TP1:", category_form)
 
         if category_form.is_valid() and category.author == request.user:
@@ -216,7 +170,7 @@ def task_edit(request, task_id):
         tasks = Tasks.objects.all()
 
         task = get_object_or_404(Tasks, pk=task_id)
-        task_form = TasksForm(data=request.POST, instance=task)
+        task_form = TasksForm(data=request.POST, instance=task, request=request)
         print("TP1:", task_form)
 
         if task_form.is_valid() and task.author == request.user:
@@ -235,7 +189,7 @@ def task_edit(request, task_id):
         'tasks':tasks,
         "categories": categories,
     }
-    return HttpResponseRedirect(reverse('home'),context)
+    return HttpResponseRedirect(reverse('home'))
 
 def category_delete(request, category_id):
     """
@@ -295,7 +249,7 @@ def task_delete(request, task_id):
         "categories": categories,
     }
 
-    return HttpResponseRedirect(reverse('home'),context)
+    return HttpResponseRedirect(reverse('home'))
 
 def task_date_view_initial(request):
     print("TP task_view_initial")
@@ -311,20 +265,91 @@ def task_date_view_initial(request):
         },
     )
 
-def task_date_view(request,date):
-    #print(date)
+def task_date_view(request):
     print("TP here")
-   # print(request.POST)
     date = request.POST.get('date_to_view')
 
     print(date)
     tasks = Tasks.objects.filter(date__range=[date,date])
     print(date)
+    categories = Category.objects.all()
 
+
+
+    context = {
+        'tasks':tasks,
+        'categories': categories,
+        }
+
+    return render (
+        request,
+        'tasks/index.html',
+        context,
+    )
+
+def task_statistics_initial(request):
+    tasks = Tasks.objects.filter(author=request.user)
+
+
+    print("TP task_statistics_initial")
+
+
+    task_statistics_form = TaskStatistics(request=request)
     return render(
         request,
-        "tasks/index.html",
+        "tasks/statistics.html",
         {
         'tasks':tasks,
+        'task_statistics_form': task_statistics_form,
         },
     )
+
+def task_statistics(request):
+
+    date_from = request.POST.get('date_from')
+    date_to = request.POST.get('date_to')
+
+    category = request.POST.get('category_sel')
+
+    tasks = Tasks.objects.filter(date__range=[date_from, date_to], category_id=category, author=request.user)
+
+    task_statistics_form = TaskStatistics(data=request.POST,request=request)
+
+    result = ""
+    # already checkded for author = request.user
+    if task_statistics_form.is_valid():
+
+        task_seconds = 0
+
+        for task in tasks:
+            time1 = task.start_time
+            time2 = task.end_time
+
+            timeformat = "%H:%M:%S"
+            delta = datetime.strptime(str(time2), timeformat) - datetime.strptime(str(time1), timeformat)
+
+            task_seconds += delta.total_seconds()
+
+
+        total_seconds = task_seconds
+        total_hours = total_seconds // 3600
+        total_min = (total_seconds % 3600) // 60
+        total_seconds = (total_seconds % 3600) % 60
+        result = f"Hours:{total_hours} minutes:{total_min} seconds:{total_seconds}"
+    else:
+         messages.add_message(request, messages.ERROR, 'Ops! something went wrong!!')
+
+
+    context = {
+        'result': result,
+        'task_statistics_form':task_statistics_form,
+        'tasks':tasks,
+        'category': category,
+        }
+
+    return render (
+        request,
+        'tasks/statistics.html',
+        context,
+    )
+

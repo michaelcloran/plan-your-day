@@ -9,30 +9,31 @@
     <a href="{% url 'category' %}" class="btn btn-outline-primary right">Add Category</a>
     <!-- Displaying categories -->
   <div class="row d-flex justify-content-center align-content-center h-100">
-    <div class="col-12  ">
+    <div class="col-12">
       <h3 class="align-middle">Categories:</h3>
       <div class="card-body">
         <!-- We want a for loop inside the empty control tags
           to iterate through each category in categories -->
         {% for category in categories %}
         {% if category.author == user %}
-        <div class="p-2 comments d-flex flex-column">
+          <div class="p-2 comments d-flex flex-column">
 
-          <p class="font-weight-bold">
-            {{ category.author }}
+            <p class="font-weight-bold">
+              {{ category.author }}
+            </p>
+            <div id="category{{ category.id }}">
+              <h2 class="card-title">{{ category.category_name | linebreaks }}</h2>
+            </div>
 
-          </p>
-          <div id="category{{ category.id }}">
-            <h2 class="card-title">{{ category.category_name | linebreaks }}</h2>
-          </div>
-          {% endif %}
           {% if user.is_authenticated and category.author == user %}
             <button class="btn btn-delete"
                 data-category_id="{{ category.id }}">Delete</button>
             <button class="btn btn-edit"
                 data-category_id="{{ category.id }}">Edit</button>
+          </div>
             {% endif %}
-        </div>
+            {% endif %}
+
         <!-- Our for loop ends here -->
         {% endfor %}
       </div>
