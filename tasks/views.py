@@ -1,5 +1,5 @@
 import datetime
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.shortcuts import redirect
@@ -12,9 +12,10 @@ from .forms import CategoriesForm, TasksForm, TasksViewDate, TaskStatistics
 
 # Create your views here.
 def home_view(request):
+    todays_date = datetime.now()
 
-    tasks = Tasks.objects.all()
-    categories = Category.objects.all()
+    tasks = Tasks.objects.filter(date__range=[todays_date, todays_date],author=request.user)
+    categories = Category.objects.filter(author=request.user)
 
     context = {
         'tasks':tasks,
@@ -29,7 +30,7 @@ def home_view(request):
     )
 
 def categories_listing(request):
-    categories = Category.objects.all()
+    categories = Category.objects.filter(author=request.user)
 
     return render(
         request,
@@ -40,7 +41,7 @@ def categories_listing(request):
     )
 
 def category_listing(request):
-    categories = Category.objects.all()
+    categories = Category.objects.filter(author=request.user)
 
     category_form = CategoriesForm(request=request)
 
@@ -53,7 +54,7 @@ def category_listing(request):
     )
 
 def task_listing(request):
-    tasks = Tasks.objects.all()
+    tasks = Tasks.objects.filter(author=request.user)
 
     task_form = TasksForm(request=request)
 
@@ -130,7 +131,7 @@ def category_edit(request, category_id):
     """
     if request.method == "POST":
 
-        categories = Category.objects.all()
+        categories = Category.objects.filter(author=request.user)
 
         category = get_object_or_404(Category, pk=category_id)
         category_form = CategoriesForm(data=request.POST, instance=category,request=request)
@@ -167,7 +168,7 @@ def task_edit(request, task_id):
     """
     if request.method == "POST":
 
-        tasks = Tasks.objects.all()
+        tasks = Tasks.objects.filter(author=request.user)
 
         task = get_object_or_404(Tasks, pk=task_id)
         task_form = TasksForm(data=request.POST, instance=task, request=request)
@@ -182,8 +183,8 @@ def task_edit(request, task_id):
         else:
             messages.add_message(request, messages.ERROR, 'Error updating task!')
 
-    tasks = Tasks.objects.all()
-    categories = Category.objects.all()
+    tasks = Tasks.objects.filter(author=request.user)
+    categories = Category.objects.filter(author=request.user)
 
     context = {
         'tasks':tasks,
@@ -202,7 +203,7 @@ def category_delete(request, category_id):
     ``category``
         a single category
     """
-    categories = Category.objects.all()
+    categories = Category.objects.filter(author=request.user)
     # post = get_object_or_404(queryset, slug=slug)
     category = get_object_or_404(Category, pk=category_id)
 
@@ -230,7 +231,7 @@ def task_delete(request, task_id):
     ``task``
         a single task
     """
-    tasks = Tasks.objects.all()
+    tasks = Tasks.objects.filter(author=request.user)
     # post = get_object_or_404(queryset, slug=slug)
     task = get_object_or_404(Tasks, pk=task_id)
 
@@ -240,8 +241,8 @@ def task_delete(request, task_id):
     else:
         messages.add_message(request, messages.ERROR, 'You can only delete your own tasks!')
 
-    categories = Category.objects.all()
-    tasks = Tasks.objects.all()
+    categories = Category.objects.filter(author=request.user)
+    tasks = Tasks.objects.filter(author=request.user)
 
 
     context = {
