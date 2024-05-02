@@ -287,69 +287,67 @@ def task_date_view(request):
         context,
     )
 
-def task_statistics_initial(request):
-    tasks = Tasks.objects.filter(author=request.user)
-
-
-    print("TP task_statistics_initial")
-
-
-    task_statistics_form = TaskStatistics(request=request)
-    return render(
-        request,
-        "tasks/statistics.html",
-        {
-        'tasks':tasks,
-        'task_statistics_form': task_statistics_form,
-        },
-    )
 
 def task_statistics(request):
-
-    date_from = request.POST.get('date_from')
-    date_to = request.POST.get('date_to')
-
-    category = request.POST.get('category_sel')
-
-    tasks = Tasks.objects.filter(date__range=[date_from, date_to], category_id=category, author=request.user)
-
-    task_statistics_form = TaskStatistics(data=request.POST,request=request)
+    tasks = Tasks.objects.filter(author=request.user)
 
     result = ""
-    # already checkded for author = request.user
-    if task_statistics_form.is_valid():
+    context = ""
 
-        task_seconds = 0
+    if request.method == "POST":
+        date_from = request.POST.get('date_from')
+        date_to = request.POST.get('date_to')
 
-        for task in tasks:
-            time1 = task.start_time
-            time2 = task.end_time
+        category = request.POST.get('category_sel')
 
-            timeformat = "%H:%M:%S"
-            delta = datetime.strptime(str(time2), timeformat) - datetime.strptime(str(time1), timeformat)
+        tasks = Tasks.objects.filter(date__range=[date_from, date_to], category_id=category, author=request.user)
 
-            task_seconds += delta.total_seconds()
+        task_statistics_form = TaskStatistics(data=request.POST,request=request)
 
 
-        total_seconds = task_seconds
-        total_hours = total_seconds // 3600
-        total_min = (total_seconds % 3600) // 60
-        total_seconds = (total_seconds % 3600) % 60
-        result = f"Hours:{total_hours} minutes:{total_min} seconds:{total_seconds}"
-    else:
-         messages.add_message(request, messages.ERROR, 'Ops! something went wrong!!')
+        # already checkded for author = request.user
+        if task_statistics_form.is_valid():
+
+            task_seconds = 0
+
+            for task in tasks:
+                time1 = task.start_time
+                time2 = task.end_time
+
+                timeformat = "%H:%M:%S"
+                delta = datetime.strptime(str(time2), timeformat) - datetime.strptime(str(time1), timeformat)
+
+                task_seconds += delta.total_seconds()
 
 
-    context = {
+            total_seconds = task_seconds
+            total_hours = total_seconds // 3600
+            total_min = (total_seconds % 3600) // 60
+            total_seconds = (total_seconds % 3600) % 60
+            result = f"Hours:{total_hours} minutes:{total_min} seconds:{total_seconds}"
+        else:
+            messages.add_message(request, messages.ERROR, 'Ops! something went wrong!!')
+
+        context = {
         'result': result,
         'task_statistics_form':task_statistics_form,
         'tasks':tasks,
         'category': category,
         }
 
+    else:
+        task_statistics_form = TaskStatistics(request=request)
+
+        context = {
+        'result': result,
+        'task_statistics_form':task_statistics_form,
+        'tasks':tasks,
+
+        }
+
+
     return render (
         request,
         'tasks/statistics.html',
         context,
     )
-

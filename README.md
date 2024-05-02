@@ -148,7 +148,7 @@ Mobile
 ![Mobile Delete Task](images/images_docs/mobile_delete_task.png)
 
 
-## Some bug found while doing project
+## Some bugs found while doing project
 
 - Kanban board bug
 
@@ -160,6 +160,6 @@ In order to fix the above issue I had to delete all the entries in the Kanban bo
 
 - Database Unique=True issue
 
-During my development of the database models I can across an issue where I set the category_name and task_name to unique. This seemed innocent enough as each user would have a unique set of tasks and categories. But this was not the full picture as at the database level each task_name and category_name has to be unique when the value is unique=True. So I was getting collisions when multi-user use was tested. My way of resolving the issue was to remove the unique=True from the models fields for category_name and task_name and to allow the user to manage the tasks and categories at their own discretion.
+During my development of the database models I came across an issue where I set the category_name and task_name to unique. This seemed innocent enough as each user would have a unique set of tasks and categories. But this was not the full picture as at the database level each task_name and category_name has to be unique when the value is unique=True. So I was getting collisions when multi-user use was tested. My way of resolving the issue was to remove the unique=True from the models fields for category_name and task_name and to allow the user to manage the tasks and categories at their own discretion.
 
 

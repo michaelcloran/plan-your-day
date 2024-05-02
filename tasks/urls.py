@@ -4,8 +4,9 @@ from . import views
 urlpatterns = [
      path('', views.home_view, name='home'),
 
-     path('statistics/', views.task_statistics, name="task_statistics"),
-     path('view-statistics/', views.task_statistics_initial, name='view-statistics-form'),
+     #path('statistics/', views.task_statistics, name="task_statistics"),
+     #path('view-statistics/', views.task_statistics_initial, name='view-statistics-form'),
+     path('statistics/', views.task_statistics, name='view_task_statistics'),
 
      path('task_view_date/', views.task_date_view, name='task_date_view'),
      path('view-date/', views.task_date_view_initial, name='view-date'),
