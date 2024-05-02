@@ -9,7 +9,7 @@
 {% if user.is_authenticated %}
 <div class="container-fluid">
     <div class="row">
-        <form id="taskViewDateForm" method="POST" action="{% url 'task_date_view'  %}" >
+        <form id="taskViewDateForm" method="POST" action="{% url 'tasks_date_view'  %}" >
 
             {{view_date_form | crispy}}
             {% csrf_token %}

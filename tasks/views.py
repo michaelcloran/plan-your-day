@@ -251,42 +251,47 @@ def task_delete(request, task_id):
 
     return HttpResponseRedirect(reverse('home'))
 
-def task_date_view_initial(request):
-    print("TP task_view_initial")
 
-    tasks = Tasks.objects.all()
-    view_date_form = TasksViewDate()
-    return render(
-        request,
-        "tasks/view-date.html",
-        {
-        'tasks':tasks,
-        'view_date_form': view_date_form,
-        },
-    )
-
-def task_date_view(request):
+def tasks_date_view(request):
     print("TP here")
-    date = request.POST.get('date_to_view')
 
-    print(date)
-    tasks = Tasks.objects.filter(date__range=[date,date])
-    print(date)
-    categories = Category.objects.all()
+    tasks = Tasks.objects.filter(author=request.user)
+    categories = Category.objects.filter(author=request.user)
+    view_date_form = TasksViewDate()
 
+    context = ""
 
+    if request.method == "POST":
+        date = request.POST.get('date_to_view')
 
-    context = {
+        print(date)
+        tasks = Tasks.objects.filter(date__range=[date,date], author=request.user)
+        print(date)
+        categories = Category.objects.filter(author=request.user)
+
+        context = {
         'tasks':tasks,
         'categories': categories,
         }
+    else:
+        context = {
+        'tasks':tasks,
+        'categories': categories,
+        'view_date_form': view_date_form,
+        }
 
-    return render (
-        request,
-        'tasks/index.html',
-        context,
-    )
-
+    if request.method == "POST":
+        return render (
+            request,
+            'tasks/index.html',
+            context,
+        )
+    else:
+        return render (
+            request,
+            "tasks/view-date.html",
+            context,
+        )
 
 def task_statistics(request):
     tasks = Tasks.objects.filter(author=request.user)
