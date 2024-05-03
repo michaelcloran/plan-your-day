@@ -12,6 +12,9 @@ from .forms import CategoriesForm, TasksForm, TasksViewDate, TaskStatistics
 
 # Create your views here.
 def home_view(request):
+    if not request.user.is_authenticated:
+        return redirect(f"{'account_login'}")
+
     todays_date = datetime.now()
 
     tasks = Tasks.objects.filter(date__range=[todays_date, todays_date],author=request.user)
@@ -21,12 +24,11 @@ def home_view(request):
         'tasks':tasks,
         "categories": categories,
     }
-    if not request.user.is_authenticated:
-        return redirect(f"{'account_login'}")
+
     return render(
         request,
         'tasks/index.html',
-        context
+        context,
     )
 
 def categories_listing(request):
