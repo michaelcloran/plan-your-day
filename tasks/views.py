@@ -14,10 +14,29 @@ from .forms import CategoriesForm, TasksForm, TasksViewDate, TaskStatistics
 def home_view(request):
     if not request.user.is_authenticated:
         return redirect(f"{'account_login'}")
+    print(f"TP home view : {request.POST}, : {request}")
 
     todays_date = datetime.now()
 
     tasks = Tasks.objects.filter(date__range=[todays_date, todays_date],author=request.user)
+
+    categories = Category.objects.filter(author=request.user)
+
+    context = {
+        'tasks':tasks,
+        "categories": categories,
+    }
+
+    return render(
+        request,
+        'tasks/index.html',
+        context,
+    )
+
+def home_view2(request, view_date):
+
+    tasks = Tasks.objects.filter(date__range=[view_date, view_date],author=request.user)
+
     categories = Category.objects.filter(author=request.user)
 
     context = {
@@ -185,14 +204,46 @@ def task_edit(request, task_id):
         else:
             messages.add_message(request, messages.ERROR, 'Error updating task!')
 
-    tasks = Tasks.objects.filter(author=request.user)
+    date_from = request.POST.get('date')
+    tasks = Tasks.objects.filter(date__range=[date_from, date_from],author=request.user)
+    categories = Category.objects.filter(author=request.user)
+
+    return redirect(reverse('home2' ,args=[date_from]))
+
+def task_edit_with_date(request, view_date, task_id):
+    if request.method == "POST":
+
+        tasks = Tasks.objects.filter(author=request.user)
+
+        task = get_object_or_404(Tasks, pk=task_id)
+        task_form = TasksForm(data=request.POST, instance=task, request=request)
+        print("TP1:", task_form)
+
+        if task_form.is_valid() and task.author == request.user:
+            new_task = task_form.save(commit=False)
+            #category.post = category
+            new_task.approved = False
+            new_task.save()
+            messages.add_message(request, messages.SUCCESS, 'Task Updated!')
+        else:
+            messages.add_message(request, messages.ERROR, 'Error updating task!')
+
+    date_from = view_date # request.POST.get('date')
+    tasks = Tasks.objects.filter(date__range=[date_from, date_from],author=request.user)
     categories = Category.objects.filter(author=request.user)
 
     context = {
         'tasks':tasks,
         "categories": categories,
     }
-    return HttpResponseRedirect(reverse('home'))
+    # return render(
+    #     request,
+    #     'tasks/index.html',
+    #     context,
+    # )
+    #return HttpResponseRedirect(reverse('home'))
+    return redirect(reverse('home2' ,args=[date_from]))
+    #return redirect(reverse('home'), context=context)
 
 def category_delete(request, category_id):
     """
@@ -246,14 +297,48 @@ def task_delete(request, task_id):
     categories = Category.objects.filter(author=request.user)
     tasks = Tasks.objects.filter(author=request.user)
 
-
+    #date_from = request.POST.get('date')
     context = {
         'tasks':tasks,
         "categories": categories,
     }
 
+    # return render(
+    #     request,
+    #     'tasks/index.html',
+    #     context,
+    # )
+    #return redirect(reverse('home2' ,args=[date_from]))
     return HttpResponseRedirect(reverse('home'))
 
+def task_delete_with_date(request, view_date, task_id):
+    tasks = Tasks.objects.filter(author=request.user)
+    # post = get_object_or_404(queryset, slug=slug)
+    task = get_object_or_404(Tasks, pk=task_id)
+
+    if task.author == request.user:
+        task.delete()
+        messages.add_message(request, messages.SUCCESS, 'Task deleted!')
+    else:
+        messages.add_message(request, messages.ERROR, 'You can only delete your own tasks!')
+
+    categories = Category.objects.filter(author=request.user) #??
+    tasks = Tasks.objects.filter(author=request.user) #??
+
+
+    # context = {
+    #     'tasks':tasks,
+    #     "categories": categories,
+    # }
+
+    date_from = view_date
+
+    # return render(
+    #     request,
+    #     'tasks/index.html',
+    #     context,
+    # )
+    return redirect(reverse('home2' ,args=[date_from]))
 
 def tasks_date_view(request):
     print("TP here")

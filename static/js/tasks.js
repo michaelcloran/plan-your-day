@@ -72,8 +72,37 @@ button.addEventListener("click", (e) => {
 
 for (let button of deleteTaskButtons) {
   button.addEventListener("click", (e) => {
+    let parent = e.target.parentElement;
+    let task_date_el = parent.getElementsByClassName('task-date');
+
+    let view_date = task_date_el[0].innerText;
+    console.log("TP view_date: "+view_date);
+
+    let todays_date = new Date();
+    console.log(todays_date);
+    let year = todays_date.getFullYear();
+    let month = String(todays_date.getMonth() + 1).padStart(2, '0');
+    let day = String(todays_date.getDate()).padStart(2, '0');
+    console.log("TP year:"+year+"-"+month+"-"+day);
+
+    todays_date = year+"-"+month+"-"+day;
+
     let taskId = e.target.getAttribute("data-task_id");
-    deleteTaskConfirm.href = `delete_task/${taskId}`;
+
+    if(todays_date === view_date){
+      console.log("TP hurray!!");
+      deleteTaskConfirm.href = `delete_task/${taskId}`;
+    }else{
+      console.log("TP dates not equal!!");
+      let index_of_date = window.location.href.indexOf(view_date);
+      if(index_of_date == -1){
+        deleteTaskConfirm.href = `${view_date}/delete_task/${taskId}`;
+      }else{
+        deleteTaskConfirm.href = `delete_task/${taskId}`;
+      }
+    }
+
+
     deleteTaskModal.show();
   });
 }
