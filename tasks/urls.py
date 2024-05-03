@@ -28,7 +28,7 @@ urlpatterns = [
 
      path('add_task/<str:foo>/',views.add_task, name='add_task' ),
 
-     path('<str:view_date>/', views.home_view2, name='home2'),
+
 
      path('edit_task/<int:task_id>', views.task_edit, name='tasks_edit'),
      path('delete_task/<int:task_id>',
@@ -43,6 +43,8 @@ urlpatterns = [
 
      path('categories/delete_category/<int:category_id>',
           views.category_delete, name='category_delete'),
+
+     path('<str:view_date>/', views.home_view2, name='home2'),
 
 
 
