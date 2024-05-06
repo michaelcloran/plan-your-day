@@ -82,7 +82,7 @@
           </button>
         </div>
 
-        <form name="editTaskForm" method="POST">
+        <form name="editTaskForm" method="POST" class="was-validated">
         <div class="modal-body">
 
             <label for="id_category_id" class="form-label requiredField"> Category id<span class="asteriskField">*</span></label>
@@ -94,28 +94,59 @@
                 {% endif %}
                 {% endfor %}
             </select>
-            <label for="id_task_name" class="form-label requiredField">Task name<span class="asteriskField">*</span></label>
-            <input type="text" name="task_name" maxlength="50" class="textinput form-control" required id="id_task_name">
 
-            <label for="id_task_description" class="form-label requiredField">Task description<span class="asteriskField">*</span></label>
-            <textarea name="task_description" cols="40" rows="10" class="textarea form-control" required id="id_task_description"></textarea>
+            <div class="mb-3 mt-3">
+              <label for="id_task_name" class="form-label requiredField">Task name<span class="asteriskField">*</span></label>
+              <input type="text" name="task_name" maxlength="50" class="textinput form-control" required id="id_task_name">
+              <div class="valid-feedback">Vaild.</div>
+              <div class="invalid-feedback">
+                Please provide a valid task name.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="id_task_description" class="form-label requiredField">Task description<span class="asteriskField">*</span></label>
+              <textarea name="task_description" cols="40" rows="10" class="textarea form-control" required id="id_task_description"></textarea>
+              <div class="valid-feedback">Vaild.</div>
+              <div class="invalid-feedback">
+                Please provide a valid text.
+              </div>
+            </div>
 
             <input type="checkbox" name="is_urgent" class="checkboxinput form-check-input" id="id_is_urgent">
             <label for="id_is_urgent" class="form-check-label">
                 Is urgent
             </label><br>
 
-            <label for="id_date" class="form-label requiredField">
-                Date<span class="asteriskField">*</span> </label>
-            <input type="date" name="date" class="dateinput form-control" required id="id_date">
+            <div class="mb-3">
+              <label for="id_date" class="form-label requiredField">
+                  Date<span class="asteriskField">*</span> </label>
+              <input type="date" name="date" class="dateinput form-control" required id="id_date">
+              <div class="valid-feedback">Vaild.</div>
+              <div class="invalid-feedback">
+                Please provide a valid date.
+              </div>
+            </div>
 
-            <label for="id_start_time" class="form-label requiredField">
-                Start time<span class="asteriskField">*</span> </label>
-            <input type="text" name="start_time" class="timeinput form-control" required id="id_start_time">
+            <div class="mb-3">
+              <label for="id_start_time" class="form-label requiredField">
+                  Start time<span class="asteriskField">*</span> </label>
+              <input type="time" name="start_time" class="timeinput form-control" required id="id_start_time">
+              <div class="valid-feedback">Vaild.</div>
+              <div class="invalid-feedback">
+                Please provide a valid start time hh:mm.
+              </div>
+            </div>
 
-            <label for="id_end_time" class="form-label requiredField">
-                End time<span class="asteriskField">*</span> </label>
-            <input type="text" name="end_time" class="timeinput form-control" required id="id_end_time">
+            <div class="mb-3">
+              <label for="id_end_time" class="form-label requiredField">
+                  End time<span class="asteriskField">*</span> </label>
+              <input type="time" name="end_time" class="timeinput form-control" required id="id_end_time">
+              <div class="valid-feedback">Vaild.</div>
+              <div class="invalid-feedback">
+                Please provide a valid end time hh:mm.
+              </div>
+            </div>
 
 
             {% csrf_token %}

@@ -48,6 +48,8 @@ class TasksForm(forms.ModelForm):
 
         widgets = {
             'date': DateInput(),
+            'start_time': forms.TimeInput(attrs={'type':'time'}),
+            'end_time': forms.TimeInput(attrs={'type':'time'}),
 
         }
 

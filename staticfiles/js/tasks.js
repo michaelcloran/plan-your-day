@@ -55,21 +55,21 @@ button.addEventListener("click", (e) => {
         e.preventDefault();
         e.stopPropagation();
 
-        field = Array.from(editTaskForm.elements);
+        // field = Array.from(editTaskForm.elements);
 
-        // reset fields
-        field.forEach(i => {
-          i.setCustomValidity('');
-          i.classList.remove('invalid');
-        });
+        // // reset fields
+        // field.forEach(i => {
+        //   i.setCustomValidity('');
+        //   i.classList.remove('invalid');
+        // });
 
-        // apply invalid class
-        field.forEach(i => {
-          if (!i.checkValidity()) {
-            // field is invalid - add class
-            i.classList.add('invalid');
-          }
-        });
+        // // apply invalid class
+        // field.forEach(i => {
+        //   if (!i.checkValidity()) {
+        //     // field is invalid - add class
+        //     i.classList.add('invalid');
+        //   }
+        // });
 
       }else{
 
