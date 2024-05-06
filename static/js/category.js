@@ -34,9 +34,15 @@ button.addEventListener("click", (e) => {
     categoryText.value = categoryContent;
 
     editConfirm.addEventListener("click", (e) => {
-      editForm.action=`edit_category/${categoryId}`;
+      if (!editForm.checkValidity()) {
 
-      editForm.submit();
+        e.preventDefault();
+        e.stopPropagation();
+      }else {
+        editForm.action=`edit_category/${categoryId}`;
+
+        editForm.submit();
+      }
     });
     editCancel.addEventListener("click", (e) => {
       console.log("cancel clicked");

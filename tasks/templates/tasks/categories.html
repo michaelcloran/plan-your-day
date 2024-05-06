@@ -52,11 +52,17 @@
         </button>
       </div>
 
-      <form name="editForm" method="POST">
+      <form name="editForm" method="POST" class="was-validated">
       <div class="modal-body">
 
           {% csrf_token %}
-          <input type="text" name="category_name" maxlength="25" required id="id_category_name">
+          <div class="mb-3 mt-3">
+            <input type="text" name="category_name" maxlength="25" required id="id_category_name">
+            <div class="valid-feedback">Vaild.</div>
+              <div class="invalid-feedback">
+                Please provide a valid category name.
+              </div>
+          </div>
 
       </div>
       <div class="modal-footer">
