@@ -1,6 +1,7 @@
 from django import forms
 from .models import ContactFormRequest
 
+
 class ContactRequestForm(forms.ModelForm):
     """
     Allows a form to be displayed for collaboration

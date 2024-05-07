@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import About, ContactFormRequest
 from django_summernote.admin import SummernoteModelAdmin
 
+
 # Register your models here.
 @admin.register(About)
 class AboutAdmin(SummernoteModelAdmin):
@@ -17,6 +18,7 @@ class AboutAdmin(SummernoteModelAdmin):
 #       If you want to customise the admin panel view in your
 #       own projects, then inherit from admin.ModelAdmin like
 #       we do below.
+
 @admin.register(ContactFormRequest)
 class ContactFormRequestAdmin(admin.ModelAdmin):
     """

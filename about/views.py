@@ -3,6 +3,7 @@ from .models import About
 from django.contrib import messages
 from .forms import ContactRequestForm
 
+
 # Create your views here.
 def about_me(request):
     """
@@ -24,10 +25,11 @@ def about_me(request):
             messages.add_message(
                 request,
                 messages.SUCCESS,
-                'Contact request received! I endeavor to respond within 2 working days.'
+                'Contact request received! I endeavor to respond '
+                'within 2 working days.'
             )
 
-    about = About.objects.all() # .order_by('-updated_on').first()
+    about = About.objects.all()
     contact_form = ContactRequestForm()
 
     return render(

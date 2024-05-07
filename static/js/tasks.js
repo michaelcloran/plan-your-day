@@ -12,7 +12,6 @@ for (let button of editTasksButtons){
 button.addEventListener("click", (e) => {
 
   let taskId = e.target.getAttribute("data-task_id");
-  //let taskContent = document.getElementById(`task${taskId}`).innerText;
 
     editTaskModal.show();
 
@@ -54,22 +53,6 @@ button.addEventListener("click", (e) => {
 
         e.preventDefault();
         e.stopPropagation();
-
-        // field = Array.from(editTaskForm.elements);
-
-        // // reset fields
-        // field.forEach(i => {
-        //   i.setCustomValidity('');
-        //   i.classList.remove('invalid');
-        // });
-
-        // // apply invalid class
-        // field.forEach(i => {
-        //   if (!i.checkValidity()) {
-        //     // field is invalid - add class
-        //     i.classList.add('invalid');
-        //   }
-        // });
 
       }else{
 
