@@ -25,13 +25,12 @@
               <h2 class="card-title">{{ category.category_name | linebreaks }}</h2>
             </div>
 
-          {% if user.is_authenticated and category.author == user %}
             <button class="btn btn-delete"
                 data-category_id="{{ category.id }}">Delete</button>
             <button class="btn btn-edit"
                 data-category_id="{{ category.id }}">Edit</button>
+            <hr/>
           </div>
-            {% endif %}
             {% endif %}
 
         <!-- Our for loop ends here -->
