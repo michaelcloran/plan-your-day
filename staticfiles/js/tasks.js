@@ -64,14 +64,22 @@ button.addEventListener("click", (e) => {
       document.getElementById("id_end_time").value = checkTime(now.getHours())+":"+checkTime(now.getMinutes());
     });
 
-
-
     editConfirm.addEventListener("click", (e) => {
 
-      if (!editTaskForm.checkValidity()) {
+      if (!editTaskForm.checkValidity() || document.getElementById("id_start_time").value > document.getElementById("id_end_time").value) {
 
         e.preventDefault();
         e.stopPropagation();
+
+        if(document.getElementById("id_start_time").value > document.getElementById("id_end_time").value){
+
+          document.getElementById("id_start_time").parentElement.style.color = "red";
+          let p = document.createElement("p");
+          const parent_el =  document.getElementById("id_start_time").parentElement;
+          parent_el.append(p);
+
+          parent_el.getElementsByTagName("p")[0].innerText = "This value must be less than end time!!";
+        }
 
       }else{
 
