@@ -20,7 +20,14 @@
             {% if result %}
             <h1>Results</h1>
             <p>Hours, minutes and seconds worked on tasks with category chosen!!</p>
-            <h2>{{result}}</h2>
+
+            {% for res in result%}
+                {% if res == 'Total' %}
+                <h1>{{res}}</h1>
+                {% else %}
+                <p>{{res}}</p>
+                {% endif %}
+            {% endfor %}
             {% endif %}
         </div>
     </div>

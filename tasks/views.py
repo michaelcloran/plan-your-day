@@ -490,7 +490,7 @@ def task_statistics(request):
     """
     tasks = Tasks.objects.filter(author=request.user)
 
-    result = ""
+    result = []
     context = ""
 
     if request.method == "POST":
@@ -520,12 +520,21 @@ def task_statistics(request):
 
                 task_seconds += delta.total_seconds()
 
+                task_sec = delta.total_seconds()
+                tot_hours = task_sec // 3600
+                tot_min = (task_sec % 3600) // 60
+                tot_seconds = (task_sec % 3600) % 60
+                result.append(f"Total time on {task.task_name}")
+                result.append(f"Hours:{tot_hours} minutes:{tot_min}"\
+                         f" seconds:{tot_seconds}")
+
             total_seconds = task_seconds
             total_hours = total_seconds // 3600
             total_min = (total_seconds % 3600) // 60
             total_seconds = (total_seconds % 3600) % 60
-            result = f"Hours:{total_hours} minutes:{total_min}"\
-                     f" seconds:{total_seconds}"
+            result.append("Total")
+            result.append(f"Hours:{total_hours} minutes:{total_min}"\
+                     f" seconds:{total_seconds}")
         else:
             messages.add_message(request, messages.ERROR,
                                  'Ops! something went wrong!!')

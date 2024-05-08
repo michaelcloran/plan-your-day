@@ -14,6 +14,7 @@
       <div class="card-body">
         <!-- We want a for loop inside the empty control tags
           to iterate through each category in categories -->
+        {% if categories|length > 0%}
         {% for category in categories %}
         {% if category.author == user %}
           <div class="p-2 comments d-flex flex-column">
@@ -35,6 +36,11 @@
 
         <!-- Our for loop ends here -->
         {% endfor %}
+        {% else %}
+        <div class="p-2 comments d-flex flex-column">
+          <h2>No categories!!</h2>
+        </div>
+        {% endif %}
       </div>
     </div>
 

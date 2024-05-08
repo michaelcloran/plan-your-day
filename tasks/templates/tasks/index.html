@@ -13,6 +13,7 @@
         <!-- Task Entries Column -->
         <div class="col-12">
           <h3 class="align-middle">Tasks:</h3>
+          {% if tasks|length > 0 %}
                 {% for task in tasks %}
                 {% if user == task.author %}
 
@@ -52,6 +53,15 @@
                 </div>
                 {% endif %}
                 {% endfor %}
+            {% else %}
+            <div class="row d-flex justify-content-center align-content-center">
+              <div class="col-md-4">
+                <div class="card mb-4">
+                  <h2>No tasks for today</h2>
+                </div>
+              </div>
+            </div>
+            {% endif %}
             <div class="row">
             </div>
         </div>
