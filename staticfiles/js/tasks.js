@@ -76,9 +76,12 @@ button.addEventListener("click", (e) => {
           document.getElementById("id_start_time").parentElement.style.color = "red";
           let p = document.createElement("p");
           const parent_el =  document.getElementById("id_start_time").parentElement;
-          parent_el.append(p);
+          if(parent_el.getElementsByTagName('p')[0] == null){
+            parent_el.append(p);
+            parent_el.getElementsByTagName("p")[0].innerText = "This value must be less than end time!!";
+          }
 
-          parent_el.getElementsByTagName("p")[0].innerText = "This value must be less than end time!!";
+
         }
 
       }else{
