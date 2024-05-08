@@ -526,7 +526,7 @@ def task_statistics(request):
                 tot_seconds = (task_sec % 3600) % 60
                 result.append(f"Total time on {task.task_name}")
                 result.append(f"Hours:{tot_hours} minutes:{tot_min}"\
-                         f" seconds:{tot_seconds}")
+                              f" seconds:{tot_seconds}")
 
             total_seconds = task_seconds
             total_hours = total_seconds // 3600
@@ -534,7 +534,7 @@ def task_statistics(request):
             total_seconds = (total_seconds % 3600) % 60
             result.append("Total")
             result.append(f"Hours:{total_hours} minutes:{total_min}"\
-                     f" seconds:{total_seconds}")
+                          f" seconds:{total_seconds}")
         else:
             messages.add_message(request, messages.ERROR,
                                  'Ops! something went wrong!!')

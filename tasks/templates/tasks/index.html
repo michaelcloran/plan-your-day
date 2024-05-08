@@ -8,11 +8,11 @@
 <!-- index.html content starts here -->
 {% if user.is_authenticated %}
 <div class="container-fluid">
-  <a href="{% url 'tasks' %}" class="btn btn-outline-primary right" >Add Task</a>
+  <a href="{% url 'tasks' %}" class="btn btn-outline-primary right d-flex justify-content-center align-content-center" >Add Task</a>
   <div class="row">
         <!-- Task Entries Column -->
         <div class="col-12">
-          <h3 class="align-middle">Tasks:</h3>
+          <h3 class="align-middle d-flex justify-content-center align-content-center">Tasks:</h3>
           {% if tasks|length > 0 %}
                 {% for task in tasks %}
                 {% if task.finished_task == False %}
