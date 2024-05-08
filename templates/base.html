@@ -2,6 +2,7 @@
 
 {% url 'home' as home_url %}
 {% url 'about' as about_url %}
+{% url 'categories' as categories_url%}
 {% url 'view-date' as view_date_url %}
 {% url 'statistics' as statistics_url %}
 {% url 'account_login' as login_url %}
@@ -56,9 +57,12 @@
                           href="{% url 'about' %}">About</a>
                     </li>
                     {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == statistics_url %}active" aria-current="page{% endif %}" href="{% url 'view_task_statistics' %}">Statistics</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == categories_url %}active" aria-current="page{% endif %}" href="{% url 'categories' %}">Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == statistics_url %}active" aria-current="page{% endif %}" href="{% url 'view_task_statistics' %}">Statistics</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link {% if request.path == view_date_url %}active" aria-current="page{% endif %}" href="{% url 'tasks_date_view' %}">View Date</a>
                         </li>

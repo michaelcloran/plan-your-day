@@ -189,15 +189,16 @@ def add_category(request, foo):
                 'Category submitted'
             )
 
-            category_form = CategoriesForm(request=request)
+    #         category_form = CategoriesForm(request=request)
 
-    return render(
-        request,
-        "tasks/add_category.html",
-        {
-            "category_form": category_form,
-        },
-    )
+    # return render(
+    #     request,
+    #     "tasks/add_category.html",
+    #     {
+    #         "category_form": category_form,
+    #     },
+    # )
+    return HttpResponseRedirect(reverse('categories'))
 
 
 def add_task(request, foo):
@@ -211,7 +212,7 @@ def add_task(request, foo):
         this url in the urls list
 
     Returns:
-        _type_: _description_
+        render: task_form to add_task.html
     """
     task_form = None
     if request.method == "POST":
@@ -226,15 +227,18 @@ def add_task(request, foo):
                 'task submitted'
             )
 
-            task_form = TasksForm(request=request)
+            # task_form = TasksForm(request=request)
 
-    return render(
-        request,
-        "tasks/add_task.html",
-        {
-            "task_form": task_form,
-        },
-    )
+    # return render(
+    #     request,
+    #     "tasks/add_task.html",
+    #     {
+    #         "task_form": task_form,
+    #     },
+    # )
+    date_from = request.POST.get('date')
+
+    return redirect(reverse('home2', args=[date_from]))
 
 
 def category_edit(request, category_id):
@@ -315,7 +319,7 @@ def task_edit_with_date(request, view_date, task_id):
         task to be edited
 
     Returns:
-        _type_: _description_
+        redirect: to home2 given date_from
     """
     if request.method == "POST":
 
@@ -397,7 +401,7 @@ def task_delete_with_date(request, view_date, task_id):
         deleted
 
     Returns:
-        _type_: _description_
+        redirect: to home2 given date_from
     """
 
     task = get_object_or_404(Tasks, pk=task_id)
@@ -424,7 +428,8 @@ def tasks_date_view(request):
         request (_type_): _description_
 
     Returns:
-        _type_: _description_
+        render: returns the context to index
+        if a POST else to view-date.html
     """
 
     tasks = Tasks.objects.filter(author=request.user)
