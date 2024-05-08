@@ -86,7 +86,7 @@
         <div class="modal-body">
 
             <label for="id_category_id" class="form-label requiredField"> Category id<span class="asteriskField">*</span></label>
-            <select name="category_id" class="select form-select" required size="{{ categories|length }}" id="id_category_id">
+            <select name="category_id" class="select form-select" required size="1" id="id_category_id">
 
                 {% for category in categories %}
                 {% if category.author == user %}
