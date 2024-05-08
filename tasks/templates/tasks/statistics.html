@@ -7,8 +7,8 @@
 
 <!-- index.html content starts here -->
 {% if user.is_authenticated %}
-<div class="container-fluid">
-    <div class="row">
+<div class="container-fluid w-25">
+    <div class="row ">
         <form id="taskStatistics" method="POST" action="{% url 'view_task_statistics'  %}" >
 
             {{task_statistics_form | crispy}}
@@ -21,7 +21,7 @@
             <h1>Results</h1>
             <p>Hours, minutes and seconds worked on tasks with category chosen!!</p>
 
-            {% for res in result%}
+            {% for res in result %}
                 {% if res == 'Total' %}
                 <h1>{{res}}</h1>
                 {% else %}
