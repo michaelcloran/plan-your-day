@@ -57,6 +57,7 @@ class Tasks(models.Model):
     end_time = models.TimeField()
     category_id = models.ForeignKey(Category, on_delete=models.CASCADE,
                                     related_name="category")
+    finished_task = models.BooleanField(default=False)
 
     class Meta:
         ordering = ["start_time", "author"]

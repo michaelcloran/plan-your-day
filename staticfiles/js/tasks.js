@@ -8,11 +8,17 @@ const editCancel = document.getElementById("cancel");
 const deleteTaskButtons = document.getElementsByClassName("btn-delete-task");
 const deleteTaskModal = new bootstrap.Modal(document.getElementById("deleteTaskModal"));
 
+function checkTime(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+}
+
 for (let button of editTasksButtons){
 button.addEventListener("click", (e) => {
 
   let taskId = e.target.getAttribute("data-task_id");
-  //let taskContent = document.getElementById(`task${taskId}`).innerText;
 
     editTaskModal.show();
 
@@ -43,10 +49,22 @@ button.addEventListener("click", (e) => {
 
     document.getElementById("id_start_time").value = task_start_el[0].innerText;
 
+    document.getElementById("start_time_ck").addEventListener("click", (e) =>{
+      const now = new Date();
+      document.getElementById("id_start_time").value = checkTime(now.getHours())+":"+checkTime(now.getMinutes());
+    });
+
 
     let task_end_el = parent.getElementsByClassName('task-end');
 
     document.getElementById("id_end_time").value = task_end_el[0].innerText;
+
+    document.getElementById("end_time_ck").addEventListener("click", (e) => {
+      const now = new Date();
+      document.getElementById("id_end_time").value = checkTime(now.getHours())+":"+checkTime(now.getMinutes());
+    });
+
+
 
     editConfirm.addEventListener("click", (e) => {
 
@@ -54,22 +72,6 @@ button.addEventListener("click", (e) => {
 
         e.preventDefault();
         e.stopPropagation();
-
-        // field = Array.from(editTaskForm.elements);
-
-        // // reset fields
-        // field.forEach(i => {
-        //   i.setCustomValidity('');
-        //   i.classList.remove('invalid');
-        // });
-
-        // // apply invalid class
-        // field.forEach(i => {
-        //   if (!i.checkValidity()) {
-        //     // field is invalid - add class
-        //     i.classList.add('invalid');
-        //   }
-        // });
 
       }else{
 

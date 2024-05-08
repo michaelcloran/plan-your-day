@@ -15,6 +15,7 @@
           <h3 class="align-middle">Tasks:</h3>
           {% if tasks|length > 0 %}
                 {% for task in tasks %}
+                {% if task.finished_task == False %}
                 {% if user == task.author %}
 
                 <div class="row d-flex justify-content-center align-content-center">
@@ -51,6 +52,7 @@
                       </div>
                   </div>
                 </div>
+                {% endif %}
                 {% endif %}
                 {% endfor %}
             {% else %}
@@ -138,7 +140,7 @@
 
             <div class="mb-3">
               <label for="id_start_time" class="form-label requiredField">
-                  Start time<span class="asteriskField">*</span> </label>
+                  Start time<span class="asteriskField">*</span> <input type="button" id="start_time_ck" value="Set to current time"></label>
               <input type="time" name="start_time" class="timeinput form-control" required id="id_start_time">
               <div class="valid-feedback">Vaild.</div>
               <div class="invalid-feedback">
@@ -148,7 +150,7 @@
 
             <div class="mb-3">
               <label for="id_end_time" class="form-label requiredField">
-                  End time<span class="asteriskField">*</span> </label>
+                  End time<span class="asteriskField">*</span> <input type="button" id="end_time_ck" value="Set to current time"> </label>
               <input type="time" name="end_time" class="timeinput form-control" required id="id_end_time">
               <div class="valid-feedback">Vaild.</div>
               <div class="invalid-feedback">
@@ -156,7 +158,10 @@
               </div>
             </div>
 
-
+            <div id="div_id_finished_task" class="mb-3 form-check">
+              <input type="checkbox" name="finished_task" class="checkboxinput form-check-input" id="id_finished_task">
+              <label for="id_finished_task" class="form-check-label">Finished task</label>
+            </div>
             {% csrf_token %}
 
         </div>

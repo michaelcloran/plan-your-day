@@ -53,7 +53,7 @@ class TasksForm(forms.ModelForm):
     class Meta:
         model = Tasks
         fields = ('category_id', 'task_name', 'task_description', 'is_urgent',
-                  'date', 'start_time', 'end_time')
+                  'date', 'start_time', 'end_time','finished_task')
 
         widgets = {
             'date': DateInput(),
