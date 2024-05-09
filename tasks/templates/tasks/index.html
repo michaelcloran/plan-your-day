@@ -9,6 +9,7 @@
 {% if user.is_authenticated %}
 <div class="container-fluid">
   <a href="{% url 'tasks' %}" class="btn btn-outline-primary right d-flex justify-content-center align-content-center" >Add Task</a>
+  <input type='button' name="show-docs" id='show-docs' value="Documentation">
   <div class="row">
         <!-- Task Entries Column -->
         <div class="col-12">
@@ -193,6 +194,31 @@
       </div>
     </div>
   </div>
+  <!-- docs modal-->
+  <div class="modal" tabindex="-1" id="documentation-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">System Documentation</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h2>Welcome, this is some basic documentation for the system</h2>
+          <p>In order to use the system you have to create categories (click on the categories nav-bar item and add category)
+            Then once categories are created you can click on the home nav-bar item to view todays tasks and to add a task
+            just click on the add task button. Or you can view a particular date by clicking on the view date nav-bar item.</p>
+
+            <p>It is possible with this system to view statistics by clicking on the statistics nav-bar item and choosing a from
+              and to date and then choosing a category. The stats are run through all tasks under a category and the time
+              within the time frame is totted up and displayed in a table</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Delete confirmation modal -->
 <div class="modal fade" id="deleteTaskModal" tabindex="-1"
 aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -217,6 +243,14 @@ aria-labelledby="deleteModalLabel" aria-hidden="true">
   </div>
 </div>
 </div>
+
+<script type="text/javascript">
+document.getElementById("show-docs").addEventListener('click', () => {
+  const docs_modal = new bootstrap.Modal( document.getElementById("documentation-modal"));
+  docs_modal.show();
+
+});
+</script>
 {% endif %}
 <!-- index.html content ends here -->
 {% endblock %}
