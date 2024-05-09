@@ -33,7 +33,7 @@ def home_view(request):
     todays_date = datetime.now()
 
     tasks = Tasks.objects.filter(date__range=[todays_date, todays_date],
-                                 author=request.user)
+                                 author=request.user, finished_task=False)
 
     categories = Category.objects.filter(author=request.user)
 
@@ -69,7 +69,7 @@ def home_view2(request, view_date):
     """
 
     tasks = Tasks.objects.filter(date__range=[view_date, view_date],
-                                 author=request.user)
+                                 author=request.user, finished_task=False)
 
     categories = Category.objects.filter(author=request.user)
 
@@ -297,7 +297,7 @@ def task_edit(request, task_id):
 
         if task_form.is_valid() and task.author == request.user:
             new_task = task_form.save(commit=False)
-            new_task.approved = False
+
             new_task.save()
             messages.add_message(request, messages.SUCCESS, 'Task Updated!')
         else:
