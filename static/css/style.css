@@ -164,3 +164,14 @@ body {
     color: red;
     border-color: red;
 }
+
+.accordion-button{
+    color: blue;
+    background-color: skyblue;
+}
+
+.accordion-button.collapsed{
+    color:blue;
+    background-color: skyblue;
+
+}

@@ -1,5 +1,6 @@
 from datetime import date
 from django import forms
+from django.core.exceptions import ValidationError
 from .models import Category, Tasks
 
 
@@ -53,7 +54,7 @@ class TasksForm(forms.ModelForm):
     class Meta:
         model = Tasks
         fields = ('category_id', 'task_name', 'task_description', 'is_urgent',
-                  'date', 'start_time', 'end_time','finished_task')
+                  'date', 'start_time', 'end_time')
 
         widgets = {
             'date': DateInput(),
@@ -61,6 +62,16 @@ class TasksForm(forms.ModelForm):
             'end_time': forms.TimeInput(attrs={'type': 'time'}),
 
         }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        start_time = cleaned_data.get('start_time')
+        end_time = cleaned_data.get('end_time')
+
+        if start_time > end_time:
+            raise ValidationError("The start time must be less than the end time!!")
+
+        return self.cleaned_data
 
 
 class TasksViewDate(forms.Form):

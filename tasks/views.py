@@ -226,16 +226,21 @@ def add_task(request, foo):
                 request, messages.SUCCESS,
                 'task submitted'
             )
+        else:
+            print(task_form.errors)
+            messages.add_message(request, messages.ERROR,
+                                 'Error adding task!')
 
-            # task_form = TasksForm(request=request)
+            task_form = TasksForm(data=request.POST,request=request)
 
-    # return render(
-    #     request,
-    #     "tasks/add_task.html",
-    #     {
-    #         "task_form": task_form,
-    #     },
-    # )
+            return render(
+                request,
+                "tasks/add_task.html",
+                {
+                    "task_form": task_form,
+                },
+            )
+
     date_from = request.POST.get('date')
 
     return redirect(reverse('home2', args=[date_from]))
