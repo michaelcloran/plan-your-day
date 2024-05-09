@@ -17,16 +17,63 @@
         </form>
 
         <div class="task_results">
-            {% if result %}
+            {% if result_dict %}
             <h1>Results</h1>
             <p>Hours, minutes and seconds worked on tasks with category chosen!!</p>
 
-            {% for res in result %}
-                {% if res == 'Total' %}
-                    <h1>{{res}}</h1>
-                {% else %}
-                    <p>{{res}}</p>
-                {% endif %}
+            {% for key, values in result_dict.items %}
+            {% for k, v in values.items %}
+            {% if key != 'total'%}
+            {% if k == 'task_name' %}
+            <table>
+                <tr>
+                    <th style='width:20%;'>task name</th>
+                    <th style='width:80%;'>task date</th>
+                </tr>
+            <tr>
+                <td>{{v}}</td>
+
+            {% elif  k == 'task_date' %}
+            <td>{{v}}</td>
+            </tr>
+            <tr>
+            <th>hours</th>
+            <th>minutes</th>
+            <th>seconds</th>
+            </tr>
+            {% elif k == 'hours' %}
+            <tr>
+                <td>{{v}}</td>
+            {% elif k == 'minutes' %}
+            <td>{{v}}</td>
+            {% elif k == 'seconds' %}
+            <td>{{v}}</td>
+            </tr>
+        </table>
+            {% else %}
+           <p>here</p>
+                <p>{{v}}</p>
+            {% endif %}
+        {% elif k == 'hours' %}
+        <table>
+            <tr>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <th>hours</th>
+                <th>minutes</th>
+                <th>seconds</th>
+            </tr>
+            <tr>
+            <td>{{v}}</td>
+        {% elif k == 'minutes' %}
+            <td>{{v}}</td>
+        {% else %}
+            <td>{{v}}</td>
+            </tr>
+        </table>
+        {% endif %}
+            {% endfor %}
             {% endfor %}
             {% endif %}
         </div>
