@@ -98,7 +98,7 @@ button.addEventListener("click", (e) => {
         e.preventDefault();
         e.stopPropagation();
 
-        if(document.getElementById("id_start_time").value > document.getElementById("id_end_time").value){
+        if(document.getElementById("id_start_time").value >= document.getElementById("id_end_time").value){
 
           document.getElementById("id_start_time").parentElement.style.color = "red";
           let p = document.createElement("p");

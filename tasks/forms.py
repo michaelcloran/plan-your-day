@@ -68,7 +68,7 @@ class TasksForm(forms.ModelForm):
         start_time = cleaned_data.get('start_time')
         end_time = cleaned_data.get('end_time')
 
-        if start_time > end_time:
+        if start_time >= end_time:
             raise ValidationError("The start time must be less than the end time!!")
 
         return self.cleaned_data
