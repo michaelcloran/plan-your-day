@@ -175,3 +175,18 @@ body {
     background-color: skyblue;
 
 }
+
+table{
+    border:1px solid lightgray;
+
+}
+
+table tr th{
+    background-color: lightgray;
+    border:1px solid lightgrey;
+}
+
+table tr td {
+    border:1px solid lightgrey;
+
+}
