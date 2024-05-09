@@ -41,6 +41,22 @@ button.addEventListener("click", (e) => {
 
     document.getElementById("id_task_description").value = task_description_el[0].innerText;
 
+    //this code is getting the Urgent from accordion button and setting the checkbox
+    //if needed
+    const acc_id = 'accordion'+taskId;
+    const parent_el = document.getElementById(acc_id).parentElement;
+
+    const urgent_el = parent_el.getElementsByClassName("urgent-task");
+
+    if(urgent_el.length == 1){
+      const urgent = urgent_el[0].innerText;
+
+      console.log(urgent);
+      if( urgent.includes('URGENT')){
+        document.getElementById("id_is_urgent").checked = true;
+      }
+    }
+
     let task_date_el = parent.getElementsByClassName('task-date');
 
     document.getElementById("id_date").value = task_date_el[0].innerText;
@@ -64,6 +80,17 @@ button.addEventListener("click", (e) => {
       document.getElementById("id_end_time").value = checkTime(now.getHours())+":"+checkTime(now.getMinutes());
     });
 
+    //this code is getting the Finished from the accordion button and setting checkbox
+    //if needed
+    const finished_el = parent_el.getElementsByClassName("finished-task");
+    if(finished_el.length == 1){
+      const finished = finished_el[0].innerText;
+      if( finished.includes('Finished')){
+        document.getElementById("id_finished_task").checked = true;
+      }
+    }
+
+    //update clicked test for valid form
     editConfirm.addEventListener("click", (e) => {
 
       if (!editTaskForm.checkValidity() || document.getElementById("id_start_time").value > document.getElementById("id_end_time").value) {
@@ -92,9 +119,9 @@ button.addEventListener("click", (e) => {
       }
     });
     editCancel.addEventListener("click", (e) => {
-
-      editTaskForm.submit();
-    });
+      editTaskModal.hide();
+      //editTaskForm.submit();
+  });
 });
 }
 

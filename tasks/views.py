@@ -69,7 +69,7 @@ def home_view2(request, view_date):
     """
 
     tasks = Tasks.objects.filter(date__range=[view_date, view_date],
-                                 author=request.user, finished_task=False)
+                                 author=request.user)
 
     categories = Category.objects.filter(author=request.user)
 

@@ -27,7 +27,10 @@
                       <strong> Start:&nbsp </strong>{{task.start_time|date:"H:i"}}
                       <strong> &nbsp End: &nbsp </strong>{{ task.end_time|date:"H:i"}}
                       {% if task.is_urgent == True %}
-                        <strong>&nbsp &nbsp URGENT</strong>
+                        <strong class='urgent-task'>&nbsp &nbsp URGENT</strong>
+                      {% endif %}
+                      {% if task.finished_task == True %}
+                        <strong class='finished-task' style='color:green;'>&nbsp &nbsp Finished</strong>
                       {% endif %}
                     </button>
                   </h2>
