@@ -20,7 +20,7 @@ button.addEventListener("click", (e) => {
 
   let taskId = e.target.getAttribute("data-task_id");
 
-    editTaskModal.show();
+    //editTaskModal.show();
 
     let parent = e.target.parentElement;
 
@@ -44,14 +44,14 @@ button.addEventListener("click", (e) => {
     //this code is getting the Urgent from accordion button and setting the checkbox
     //if needed
     const acc_id = 'accordion'+taskId;
-    const parent_el = document.getElementById(acc_id).parentElement;
+    let parent_el = null;
+    parent_el =  document.getElementById(acc_id).parentElement;
 
     const urgent_el = parent_el.getElementsByClassName("urgent-task");
 
     if(urgent_el.length == 1){
       const urgent = urgent_el[0].innerText;
 
-      console.log(urgent);
       if( urgent.includes('URGENT')){
         document.getElementById("id_is_urgent").checked = true;
       }
@@ -89,7 +89,7 @@ button.addEventListener("click", (e) => {
         document.getElementById("id_finished_task").checked = true;
       }
     }
-
+    editTaskModal.show();
     //update clicked test for valid form
     editConfirm.addEventListener("click", (e) => {
 
@@ -118,10 +118,10 @@ button.addEventListener("click", (e) => {
         editTaskForm.submit();
       }
     });
-    editCancel.addEventListener("click", (e) => {
-      editTaskModal.hide();
-      //editTaskForm.submit();
-  });
+     editCancel.addEventListener("click", (e) => {
+        editTaskModal.hide();
+        editTaskForm.reset();
+    });
 });
 }
 
