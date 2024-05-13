@@ -39,21 +39,17 @@
             <tr>
             <th>hours</th>
             <th>minutes</th>
-            <th>seconds</th>
+
             </tr>
             {% elif k == 'hours' %}
             <tr>
                 <td>{{v}}</td>
             {% elif k == 'minutes' %}
-            <td>{{v}}</td>
-            {% elif k == 'seconds' %}
-            <td>{{v}}</td>
+                <td>{{v}}</td>
             </tr>
-        </table>
-            {% else %}
-           <p>here</p>
-                <p>{{v}}</p>
+            </table>
             {% endif %}
+
         {% elif k == 'hours' %}
         <table>
             <tr>
@@ -62,13 +58,10 @@
             <tr>
                 <th>hours</th>
                 <th>minutes</th>
-                <th>seconds</th>
             </tr>
             <tr>
             <td>{{v}}</td>
         {% elif k == 'minutes' %}
-            <td>{{v}}</td>
-        {% else %}
             <td>{{v}}</td>
             </tr>
         </table>

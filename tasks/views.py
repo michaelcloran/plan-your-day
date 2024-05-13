@@ -531,37 +531,22 @@ def task_statistics(request):
                 task_sec = delta.total_seconds()
                 tot_hours = task_sec // 3600
                 tot_min = (task_sec % 3600) // 60
-                tot_seconds = (task_sec % 3600) % 60
 
                 result_dict[task.id] = {}
                 result_dict[task.id]['task_name'] = task.task_name
                 result_dict[task.id]['task_date'] = task.date
                 result_dict[task.id]['hours'] = tot_hours
                 result_dict[task.id]['minutes'] = tot_min
-                result_dict[task.id]['seconds'] = tot_seconds
-
-                #result_dict.update(result_dict_lo)
-
-                #result.append(f"Total time on {task.task_name}")
-                #result.append(f"Hours:{tot_hours} minutes:{tot_min}"\
-                #              f" seconds:{tot_seconds}")
 
             total_seconds = task_seconds
             total_hours = total_seconds // 3600
             total_min = (total_seconds % 3600) // 60
             total_seconds = (total_seconds % 3600) % 60
 
-            #result_dict = {}
             result_dict['total'] = {}
             result_dict['total']['hours'] = total_hours
             result_dict['total']['minutes'] = total_min
-            result_dict['total']['seconds'] = total_seconds
 
-            #result_dict.update(result_dict_lo)
-
-            #result.append("Total")
-            #result.append(f"Hours:{total_hours} minutes:{total_min}"\
-                         # f" seconds:{total_seconds}")
         else:
             messages.add_message(request, messages.ERROR,
                                  'Ops! something went wrong!!')

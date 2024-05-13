@@ -46,7 +46,9 @@ button.addEventListener("click", (e) => {
     });
     editCancel.addEventListener("click", (e) => {
       console.log("cancel clicked");
-      editForm.submit();
+      //editForm.submit();
+      editModal.hide();
+      editModal.reset();
     });
   });
 }
