@@ -16,7 +16,7 @@
             <input type="submit" value="submit">
         </form>
 
-        <div class="task_results">
+        <div class="task_results w-100">
             {% if result_dict %}
             <h1>Results</h1>
             <p>Hours, minutes and seconds worked on tasks with category chosen!!</p>
@@ -27,8 +27,8 @@
             {% if k == 'task_name' %}
             <table>
                 <tr>
-                    <th style='width:20%;'>task name</th>
-                    <th style='width:80%;'>task date</th>
+                    <th style='width:40%;'>task name</th>
+                    <th style='width:60%;'>task date</th>
                 </tr>
             <tr>
                 <td>{{v}}</td>
@@ -56,8 +56,8 @@
                 <th>Total</th>
             </tr>
             <tr>
-                <th>hours</th>
-                <th>minutes</th>
+                <th style='width:50%;'>hours</th>
+                <th style='width:50%;'>minutes</th>
             </tr>
             <tr>
             <td>{{v}}</td>

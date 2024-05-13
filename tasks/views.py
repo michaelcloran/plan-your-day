@@ -506,7 +506,7 @@ def task_statistics(request):
         category = request.POST.get('category_sel')
 
         tasks = Tasks.objects.filter(date__range=[date_from, date_to],
-                                     category_id=category, author=request.user)
+                                     category_id=category, author=request.user).order_by('-date')
 
         task_statistics_form = TaskStatistics(data=request.POST,
                                               request=request)
