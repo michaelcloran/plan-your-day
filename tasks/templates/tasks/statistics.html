@@ -25,7 +25,7 @@
             {% for k, v in values.items %}
             {% if key != 'total'%}
             {% if k == 'task_name' %}
-            <table>
+            <table class="w-100">
                 <tr>
                     <th style='width:40%;'>task name</th>
                     <th style='width:60%;'>task date</th>
@@ -51,7 +51,7 @@
             {% endif %}
 
         {% elif k == 'hours' %}
-        <table>
+        <table class="w-100">
             <tr>
                 <th>Total</th>
             </tr>
