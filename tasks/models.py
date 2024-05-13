@@ -23,7 +23,7 @@ class Category(models.Model):
         category_name: return the category_name
     """
     category_name = models.CharField(max_length=25)
-    slug = models.SlugField(max_length=200, unique=True,  default=randomString)
+    # slug = models.SlugField(max_length=200, unique=True,  default=randomString)
     author = models.ForeignKey(User, on_delete=models.CASCADE,
                                related_name="category_post")
 
@@ -45,7 +45,7 @@ class Tasks(models.Model):
     Returns:
         task_name: returns the task_name of the Task
     """
-    slug = models.SlugField(max_length=200, unique=True, default=randomString)
+    # slug = models.SlugField(max_length=200, unique=True, default=randomString)
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="task_post"
     )
