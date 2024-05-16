@@ -13,7 +13,7 @@
   <div class="row">
         <!-- Task Entries Column -->
         <div class="col-12">
-          <h3 class="align-middle d-flex justify-content-center align-content-center">Tasks:</h3>
+          <h3 class="align-middle d-flex justify-content-center align-content-center">Tasks: {{date}}</h3>
           {% if tasks|length > 0 %}
           <div class="accordion" id="accordionTasks">
                 {% for task in tasks %}

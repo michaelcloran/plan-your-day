@@ -2,14 +2,12 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.models import UserManager
 
-
 def randomString():
     """This function is used to set a random string
     to the slug
     """
     um = UserManager()
     return (um.make_random_password(length=25))
-
 
 # Create your models here.
 class Category(models.Model):
@@ -23,7 +21,6 @@ class Category(models.Model):
         category_name: return the category_name
     """
     category_name = models.CharField(max_length=25)
-    # slug = models.SlugField(max_length=200, unique=True,  default=randomString)
     author = models.ForeignKey(User, on_delete=models.CASCADE,
                                related_name="category_post")
 
@@ -45,7 +42,6 @@ class Tasks(models.Model):
     Returns:
         task_name: returns the task_name of the Task
     """
-    # slug = models.SlugField(max_length=200, unique=True, default=randomString)
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="task_post"
     )

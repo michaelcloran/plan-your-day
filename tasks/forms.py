@@ -6,7 +6,7 @@ from .models import Category, Tasks
 
 class CategoriesForm(forms.ModelForm):
     """
-    Allows a category
+    Allows a category form
     """
 
     def __init__(self, *args, **kwargs):

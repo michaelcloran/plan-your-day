@@ -93,7 +93,7 @@ button.addEventListener("click", (e) => {
     //update clicked test for valid form
     editConfirm.addEventListener("click", (e) => {
 
-      if (!editTaskForm.checkValidity() || document.getElementById("id_start_time").value > document.getElementById("id_end_time").value) {
+      if (!editTaskForm.checkValidity() || document.getElementById("id_start_time").value >= document.getElementById("id_end_time").value) {
 
         e.preventDefault();
         e.stopPropagation();

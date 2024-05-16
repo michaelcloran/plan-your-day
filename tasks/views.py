@@ -37,7 +37,10 @@ def home_view(request):
 
     categories = Category.objects.filter(author=request.user)
 
+    todays_date= todays_date.strftime("%a %B %d")
+
     context = {
+        'date': todays_date,
         'tasks': tasks,
         "categories": categories,
     }
@@ -73,7 +76,11 @@ def home_view2(request, view_date):
 
     categories = Category.objects.filter(author=request.user)
 
+    view_date = datetime.strptime(view_date, "%Y-%m-%d").date()
+    view_date_obj= view_date.strftime("%a %B %d")
+
     context = {
+        'date': view_date_obj,
         'tasks': tasks,
         "categories": categories,
     }
@@ -189,15 +196,6 @@ def add_category(request, foo):
                 'Category submitted'
             )
 
-    #         category_form = CategoriesForm(request=request)
-
-    # return render(
-    #     request,
-    #     "tasks/add_category.html",
-    #     {
-    #         "category_form": category_form,
-    #     },
-    # )
     return HttpResponseRedirect(reverse('categories'))
 
 
@@ -212,7 +210,8 @@ def add_task(request, foo):
         this url in the urls list
 
     Returns:
-        render: task_form to add_task.html
+        render: task_form to add_task.html if error
+        or redirect to home2 for task listing
     """
     task_form = None
     if request.method == "POST":
@@ -430,7 +429,10 @@ def tasks_date_view(request):
     date set
 
     Args:
-        request (_type_): _description_
+        request (user): if the date_to_view
+        is the date chosen. It get the tasks
+        for that date and passes them to the
+        context for rendering
 
     Returns:
         render: returns the context to index
@@ -451,7 +453,11 @@ def tasks_date_view(request):
 
         categories = Category.objects.filter(author=request.user)
 
+        view_date = datetime.strptime(date, "%Y-%m-%d").date()
+        view_date_obj= view_date.strftime("%a %B %d")
+
         context = {
+            'date': view_date_obj,
             'tasks': tasks,
             'categories': categories,
         }
@@ -483,7 +489,7 @@ def task_statistics(request):
     used as a marked for a task. When the user
     chooses the from date and to_date and the
     category then the results are displayed
-    in hours minutes and seconds used for that
+    in hours minutes used for that
     category within the time frame
 
     Args:
