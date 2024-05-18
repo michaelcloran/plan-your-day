@@ -242,7 +242,15 @@ def add_task(request, foo):
 
     date_from = request.POST.get('date')
 
-    return redirect(reverse('home2', args=[date_from]))
+    view_date = date_from
+
+    todays_date = datetime.now().date()
+    todays_date = todays_date.strftime("%Y-%m-%d")
+
+    if view_date == todays_date:
+        return redirect(reverse('home'))
+    else:
+        return redirect(reverse('home2', args=[date_from]))
 
 
 def category_edit(request, category_id):
@@ -305,7 +313,14 @@ def task_edit(request, task_id):
 
     date_from = request.POST.get('date')
 
-    return redirect(reverse('home2', args=[date_from]))
+    view_date = date_from
+    todays_date = datetime.now().date()
+    todays_date = todays_date.strftime("%Y-%m-%d")
+
+    if view_date == todays_date:
+        return redirect(reverse('home'))
+    else:
+        return redirect(reverse('home2', args=[date_from]))
 
 
 def task_edit_with_date(request, view_date, task_id):
