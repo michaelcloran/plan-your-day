@@ -99,7 +99,7 @@ def categories_listing(request):
 
     Args:
         request (request.user):used to get only
-        the categories fo the logged in user
+        the categories of the logged in user
 
     Returns:
         render: returns the categories to be viewed
@@ -211,7 +211,8 @@ def add_task(request, foo):
 
     Returns:
         render: task_form to add_task.html if error
-        or redirect to home2 for task listing
+        or redirect to home2 or home depending on the date
+        for task listing
     """
     task_form = None
     if request.method == "POST":
@@ -254,16 +255,18 @@ def add_task(request, foo):
 
 
 def category_edit(request, category_id):
-    """
-    Display and individual category for edit
+    """This method is used to edit a category
 
-    **Context**
+    Args:
+        request (user,data): used to get the logged
+        in user and to get the data to populate the
+        form
+        category_id (int): used to pass the category_id
+        to this method
 
-
-   ``category``
-      a single category related to the POST
-   ``category_form``
-      an instance of :form:`tasks.CategoryForm`
+    Returns:
+        HttpResponseRedirect: does a redirect to the
+        categories listing
     """
     if request.method == "POST":
 
@@ -285,16 +288,16 @@ def category_edit(request, category_id):
 
 
 def task_edit(request, task_id):
-    """
-    Display and individual category for edit
+    """used to edit a task
 
-    **Context**
+    Args:
+        request (user,data): used to authenticate the user
+        and to get the data to edit to populate the form
+        task_id (int): used to get the task_id of the
+        database table entry to be edited
 
-
-   ``category``
-      a single category related to the POST
-   ``category_form``
-      an instance of :form:`tasks.CategoryForm`
+    Returns:
+        _type_: _description_
     """
     if request.method == "POST":
 
@@ -361,15 +364,17 @@ def task_edit_with_date(request, view_date, task_id):
 
 
 def category_delete(request, category_id):
-    """
-    Delete an individual category
+    """used to delete a category
 
-    **context**
+    Args:
+        request (user): used to get the requested user
+        and to ensure the logged in user is that user
+        category_id (int): used to get the database
+        table entry to be deleted
 
-    ``post``
-        an instance of :model:`tasks.Category`
-    ``category``
-        a single category
+    Returns:
+        HttpResponseRedirect: returns a redirect
+        to the categories listing
     """
 
     category = get_object_or_404(Category, pk=category_id)
@@ -385,14 +390,16 @@ def category_delete(request, category_id):
 
 
 def task_delete(request, task_id):
-    """
-    Delete an individual task
+    """used to delete a task
 
-    **context**
+    Args:
+        request (user): used to get the requested user
+        task_id (int): used to get the database
+        table entry to be deleted
 
-
-    ``task``
-        a single task
+    Returns:
+        HttpResponseRedirect: redirects to the home
+        listing
     """
     task = get_object_or_404(Tasks, pk=task_id)
 
@@ -508,7 +515,10 @@ def task_statistics(request):
     category within the time frame
 
     Args:
-        request (user): THe user logged in
+        request (user): THe user logged in.
+        if its a POST it populates the
+        result_dict dictionary and returns
+        to template
 
     Returns:
         render: with context and tasks_stats_form
