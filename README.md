@@ -169,7 +169,7 @@ During my development of the database models I came across an issue where I set 
 
  login screen desktop
 
- ![Login screen desktop](images/images_docs/login_screen_desktop.png)
+![Login screen desktop](images/images_docs/login_screen_desktop.png)
 
 login screen mobile
 
