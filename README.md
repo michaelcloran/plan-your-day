@@ -183,6 +183,14 @@ register screen mobile
 
 ![Register screen mobile](images/images_docs/register_screen_mobile.png)
 
+once registered you can login
 
+Home screen desktop
+
+![Home screen desktop](images/images_docs/home_screen_desktop.png)
+
+Home screen mobile
+
+![Home screen mobile](images/images_docs/home_screen_mobile.png)
 
 
