@@ -193,4 +193,130 @@ Home screen mobile
 
 ![Home screen mobile](images/images_docs/home_screen_mobile.png)
 
+On the home screen it shows the navbar and under that the you are logged in as user user message and under that a button Add Task to add a task and under that another button Documentation to see a basic overview of how to use the system which shows up in a bootstrap message modal. Then under tasks Mon May 20 you see one task task1 with start time 13:07 and end time 14:07. Note the tasks are ordered ascending on start time. Then if you look down you see the footer with the copyright and social media.
+
+If you click on Add Task the Add Task form shows up
+
+Add Task form desktop
+
+![Add task form desktop](images/images_docs/add_task_form_desktop.png)
+
+Add Task form mobile
+
+![Add task form mobile](images/images_docs/add_task_form_mobile.png)
+
+Note on this form that the start time must be less than the end time or a message pops up prompting you to change the start time. Also note that the categories listing in the dropdown combo box is categories specific to the logged in user. Also note that in order to add a task there must be at least one category created via clicking on the categories link on the navbar and then clicking on the Add Category button.
+
+categories listing via clicking on the categories navbar item
+
+Categories listing desktop
+
+![Categories listing desktop](images/images_docs/categories_listing_desktop.png)
+
+Categories listing mobile
+
+![Categories listing mobile](images/images_docs/categories_listing_mobile.png)
+
+if you click on the Add Category button the Add Category form appears
+
+Add Category form desktop
+
+![Add category form desktop](images/images_docs/add_category_form_desktop.png)
+
+Add Category form mobile
+
+![Add category form mobile](images/images_docs/add_category_form_mobile.png)
+
+If you fill in the Add Category form and press Submit then you are presented with the categories listing. and a message Category submitted is prompted which you can click on the x button to close.
+
+If after adding a category you return to the home page by clicking on the Home navbar item you are again presented with task1 if you click on task1 an accordion opens up and shows the details of the task for task1 in detail it shows the task name task1 in bold and directly under it is the task description and under that is the start time and end time of the task and then the buttons Delete to delete the task and edit to edit the details of task1
+
+Details of task1 desktop
+
+![Details of task1 desktop](images/images_docs/details_of_task1_desktop.png)
+
+Details of task1 mobile
+
+![Details of task1 mobile](images/images_docs/details_of_task1_mobile.png)
+
+if you click on the Delete button a bootstrap modal opens prompting you if you want to delete the task
+
+Delete task modal desktop
+
+![Delete task modal desktop](images/images_docs/delete_task_modal_desktop.png)
+
+Delete task modal mobile
+
+![Delete task modal mobile](images/images_docs/delete_task_modal_mobile.png)
+
+if you click on the edit button the edit bootstrap modal appears to edit the task details
+
+Edit task modal desktop
+
+![Edit task modal desktop](images/images_docs/edit_task_modal_desktop.png)
+
+Edit task modal mobile
+
+![Edit task modal mobile](images/images_docs/edit_task_modal_mobile.png)
+
+If you click on task1 again the accordion closes and shows the briefs of the task.
+
+If you click on the navbar item Statistics you are brought to the statistics generation form where you choose a from date and a to date to show the stats for that time frame you are also in a dropdown asked for the Category to run the stats for
+
+Statistics generation form desktop
+
+![Statistics generation form desktop](images/images_docs/statistics_generation_form_desktop.png)
+
+Statistics generation form mobile
+
+![Statistics generation form mobile](images/images_docs/statistics_generation_form_mobile.png)
+
+Statistics desktop
+
+![Statistics desktop](images/images_docs/statistics_desktop.png)
+
+Statistics mobile
+
+![Statistics mobile](images/images_docs/statistics_mobile.png)
+
+The statistics results is shown in tables with task name and task date and then the amount of hours and minutes for that task. Then at the end it shows the total hours and minutes for all the tasks within the time frame for the particular category.
+
+If you click on the view date navbar item you are brought to the view date form
+
+View date form desktop
+
+![View date form desktop](images/images_docs/view_date_form_desktop.png)
+
+View date form mobile
+
+![View date form mobile](images/images_docs/view_date_form_mobile.png)
+
+View date desktop
+
+![View date desktop](images/images_docs/view_date_desktop.png)
+
+View date mobile
+
+![View date mobile](images/images_docs/view_date_mobile.png)
+
+Note that the finished tasks show up on view by date and do not show up on the home page. This is to unclutter the task view for today as when a task is finished it should not show up under the task listing for today.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
