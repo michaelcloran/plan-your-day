@@ -51,6 +51,26 @@ Note: That the tasks are timed and it will be possible to show stats on a daily/
     - As a site user I can view the about details of the site
     - As a site user I can fill in the contact site form
 
+<hr>
+
+[Goto Top](#welcome)
+
+## Design
+
+The design of this system was to create a basic task manager with ease of use and to be able to generate statistics with ease.
+
+## Color Scheme
+
+This system was kept basic. So the Color scheme was also basic with light shades and for tasks in the accordion shades of blue was chosen to be easy on the eyes. The Delete button was set to red to indicate danger and the edit button to green to indicate a safe edit.
+
+## Typography
+
+The fonts used for this system were plain and simple easy to read and look pleasant to the eye.
+
+<hr>
+
+[Goto Top](#welcome)
+
 ## Entity Relationship Diagrams ERD's
 
 ![ERD Tables](images/images_docs/Screenshot_2024-04-17_130157.png)
@@ -66,6 +86,10 @@ Mobile
 
 ![Mobile Home and Login](images/images_docs/mobile_home_and_login.png)
 
+<hr>
+
+[Goto Top](#welcome)
+
 About and Contact Form
 Desktop
 
@@ -74,6 +98,10 @@ Desktop
 Mobile
 
 ![Mobile About and Contact Form](images/images_docs/mobile_about_and_contactform.png)
+
+<hr>
+
+[Goto Top](#welcome)
 
 Register
 Desktop
@@ -84,6 +112,10 @@ Mobile
 
 ![Mobile Register](images/images_docs/mobile_register.png)
 
+<hr>
+
+[Goto Top](#welcome)
+
 Task List Home
 Desktop
 
@@ -92,6 +124,10 @@ Desktop
 Mobile
 
 ![Mobile Task List Home](images/images_docs/mobile_task_list_home.png)
+
+<hr>
+
+[Goto Top](#welcome)
 
 Categories List
 Desktop
@@ -102,6 +138,10 @@ Mobile
 
 ![Mobile Categories List](images/images_docs/mobile_categories_list.png)
 
+<hr>
+
+[Goto Top](#welcome)
+
 Add and Edit a Category
 Desktop
 
@@ -110,6 +150,10 @@ Desktop
 Mobile
 
 ![Mobile Add Edit Category](images/images_docs/mobile_add_edit_category.png)
+
+<hr>
+
+[Goto Top](#welcome)
 
 Delete Category
 Desktop
@@ -120,6 +164,10 @@ Mobile
 
 ![Mobile Delete Category](images/images_docs/mobile_delete_category.png)
 
+<hr>
+
+[Goto Top](#welcome)
+
 Add Edit and View Task
 Desktop
 
@@ -128,6 +176,10 @@ Desktop
 Mobile
 
 ![Mobile Add Edit View Task](images/images_docs/mobile_add_edit_view_task.png)
+
+<hr>
+
+[Goto Top](#welcome)
 
 Statistics
 Desktop
@@ -138,6 +190,10 @@ Mobile
 
 ![Mobile Statistics](images/images_docs/mobile_statistics.png)
 
+<hr>
+
+[Goto Top](#welcome)
+
 Delete Task
 Desktop
 
@@ -147,6 +203,9 @@ Mobile
 
 ![Mobile Delete Task](images/images_docs/mobile_delete_task.png)
 
+<hr>
+
+[Goto Top](#welcome)
 
 ## Some bugs found while doing project
 
@@ -162,6 +221,126 @@ In order to fix the above issue I had to delete all the entries in the Kanban bo
 
 During my development of the database models I came across an issue where I set the category_name and task_name to unique. This seemed innocent enough as each user would have a unique set of tasks and categories. But this was not the full picture as at the database level each task_name and category_name has to be unique when the value is unique=True. So I was getting collisions when multi-user use was tested. My way of resolving the issue was to remove the unique=True from the models fields for category_name and task_name and to allow the user to manage the tasks and categories at their own discretion.
 
+<hr>
+
+[Goto Top](#welcome)
+
+## Features
+
+### Header
+
+#### Navigation bar
+
+#### Navigation bar not logged in.
+
+![Navigation bar not logged in](images/images_docs/navigation_bar_not_loggedin.png)
+
+The navigation bar makes it easy to navigate the site. When not logged in you have the options Home, About, Register and Login.
+
+#### Navigation bar logged in.
+
+![Navigation bar logged in](images/images_docs/navigation_bar_logged_in.png)
+
+When logged in you can effectively use the system with navigation links Home, About, Categories, Statistics, View Date and Logout
+
+### login and register pages
+
+login screen desktop
+
+![Login screen desktop](images/images_docs/login_screen_desktop.png)
+
+login screen mobile
+
+![Login screen mobile](images/images_docs/login_screen_mobile.png)
+
+<hr>
+
+[Goto Top](#welcome)
+
+register screen desktop
+
+![Register screen desktop](images/images_docs/register_screen_desktop.png)
+
+register screen mobile
+
+![Register screen mobile](images/images_docs/register_screen_mobile.png)
+
+<hr>
+
+[Goto Top](#welcome)
+
+### Home Page
+
+Home screen desktop
+
+![Home screen desktop](images/images_docs/home_screen_desktop.png)
+
+The navbar is a logged in navbar and the, you are logged in as user is the user logged in message. Below that is an Add Task link to an Add Task form. Below that is the Documentation button to open a bootstrap message modal to view a rough manual as to how to use the system. Below that is the task and day month date message which below of shows the tasks list for that date. If there is no tasks a No tasks for today message is displayed. The tasks are shown in an accordion where when you click on the task an accordion opens and shows the details of the task.
+
+Home screen mobile
+
+![Home screen mobile](images/images_docs/home_screen_mobile.png)
+
+The Add Task link links to an Add Task form
+
+Add Task form desktop
+
+![Add task form desktop](images/images_docs/add_task_form_desktop.png)
+
+Add Task form mobile
+
+![Add task form mobile](images/images_docs/add_task_form_mobile.png)
+
+This form assumes that you have created a category as a category is required in order to create a task. You can create a category by clicking on the navbar Categories item and then in the listing click on the Add Category button and add a category.
+
+This form has a dropdown for choice of category followed by a task name and task description then an is urgent checkbox which when checked sn Urgent prompt will appear on the task minimized accordion view. Then the date of the task has to be selected and the start time and end time. Then there is a flag Finished task which is used when you open the details of the task and click on edit you can when the task is finished update the end time and select Finished task checkbox which puts a message on the accordion view Finished in the view date view it shows finished tasks but in the todays date (home) view the finished tasks no longer show up and it is a means to unclutter the screen.
+
+Note that the start time has to be less than the end time. If not a error prompt is shown prompting you to reset it.
+
+<hr>
+
+[Goto Top](#welcome)
+
+categories listing via clicking on the categories navbar item
+
+Categories listing desktop
+
+![Categories listing desktop](images/images_docs/categories_listing_desktop.png)
+
+Categories listing mobile
+
+![Categories listing mobile](images/images_docs/categories_listing_mobile.png)
+
+<hr>
+
+[Goto Top](#welcome)
+
+if you click on the Add Category button the Add Category form appears
+
+Add Category form desktop
+
+![Add category form desktop](images/images_docs/add_category_form_desktop.png)
+
+Add Category form mobile
+
+![Add category form mobile](images/images_docs/add_category_form_mobile.png)
+
+<hr>
+
+[Goto Top](#welcome)
+
+### About Page
+
+About page desktop
+
+![About page desktop](images/images_docs/about_page_desktop.png)
+
+About page mobile
+
+![About page mobile1](images/images_docs/about_page_mobile1.png)
+
+![About page mobile2](images/images_docs/about_page_mobile2.png)
+
 ## The manual for the system.
  website url: https://plan-your-day-95966d08599e.herokuapp.com/
 
@@ -175,6 +354,10 @@ login screen mobile
 
 ![Login screen mobile](images/images_docs/login_screen_mobile.png)
 
+<hr>
+
+[Goto Top](#welcome)
+
 register screen desktop
 
 ![Register screen desktop](images/images_docs/register_screen_desktop.png)
@@ -182,6 +365,10 @@ register screen desktop
 register screen mobile
 
 ![Register screen mobile](images/images_docs/register_screen_mobile.png)
+
+<hr>
+
+[Goto Top](#welcome)
 
 once registered you can login
 
@@ -195,6 +382,10 @@ Home screen mobile
 
 On the home screen it shows the navbar and under that the you are logged in as user user message and under that a button Add Task to add a task and under that another button Documentation to see a basic overview of how to use the system which shows up in a bootstrap message modal. Then under tasks Mon May 20 you see one task task1 with start time 13:07 and end time 14:07. Note the tasks are ordered ascending on start time. Then if you look down you see the footer with the copyright and social media.
 
+<hr>
+
+[Goto Top](#welcome)
+
 If you click on Add Task the Add Task form shows up
 
 Add Task form desktop
@@ -207,6 +398,10 @@ Add Task form mobile
 
 Note on this form that the start time must be less than the end time or a message pops up prompting you to change the start time. Also note that the categories listing in the dropdown combo box is categories specific to the logged in user. Also note that in order to add a task there must be at least one category created via clicking on the categories link on the navbar and then clicking on the Add Category button.
 
+<hr>
+
+[Goto Top](#welcome)
+
 categories listing via clicking on the categories navbar item
 
 Categories listing desktop
@@ -216,6 +411,10 @@ Categories listing desktop
 Categories listing mobile
 
 ![Categories listing mobile](images/images_docs/categories_listing_mobile.png)
+
+<hr>
+
+[Goto Top](#welcome)
 
 if you click on the Add Category button the Add Category form appears
 
@@ -231,6 +430,10 @@ If you fill in the Add Category form and press Submit then you are presented wit
 
 If after adding a category you return to the home page by clicking on the Home navbar item you are again presented with task1 if you click on task1 an accordion opens up and shows the details of the task for task1 in detail it shows the task name task1 in bold and directly under it is the task description and under that is the start time and end time of the task and then the buttons Delete to delete the task and edit to edit the details of task1
 
+<hr>
+
+[Goto Top](#welcome)
+
 Details of task1 desktop
 
 ![Details of task1 desktop](images/images_docs/details_of_task1_desktop.png)
@@ -238,6 +441,10 @@ Details of task1 desktop
 Details of task1 mobile
 
 ![Details of task1 mobile](images/images_docs/details_of_task1_mobile.png)
+
+<hr>
+
+[Goto Top](#welcome)
 
 if you click on the Delete button a bootstrap modal opens prompting you if you want to delete the task
 
@@ -249,6 +456,10 @@ Delete task modal mobile
 
 ![Delete task modal mobile](images/images_docs/delete_task_modal_mobile.png)
 
+<hr>
+
+[Goto Top](#welcome)
+
 if you click on the edit button the edit bootstrap modal appears to edit the task details
 
 Edit task modal desktop
@@ -258,6 +469,10 @@ Edit task modal desktop
 Edit task modal mobile
 
 ![Edit task modal mobile](images/images_docs/edit_task_modal_mobile.png)
+
+<hr>
+
+[Goto Top](#welcome)
 
 If you click on task1 again the accordion closes and shows the briefs of the task.
 
@@ -281,6 +496,10 @@ Statistics mobile
 
 The statistics results is shown in tables with task name and task date and then the amount of hours and minutes for that task. Then at the end it shows the total hours and minutes for all the tasks within the time frame for the particular category.
 
+<hr>
+
+[Goto Top](#welcome)
+
 If you click on the view date navbar item you are brought to the view date form
 
 View date form desktop
@@ -301,7 +520,9 @@ View date mobile
 
 Note that the finished tasks show up on view by date and do not show up on the home page. This is to unclutter the task view for today as when a task is finished it should not show up under the task listing for today.
 
+<hr>
 
+[Goto Top](#welcome)
 
 
 

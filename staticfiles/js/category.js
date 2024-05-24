@@ -33,6 +33,13 @@ button.addEventListener("click", (e) => {
 
     categoryText.value = categoryContent;
 
+    const closeButton = document.getElementsByClassName("close");
+
+    closeButton[0].addEventListener("click", (e) => {
+      editModal.hide();
+      editModal.reset();
+    });
+
     editConfirm.addEventListener("click", (e) => {
       if (!editForm.checkValidity()) {
 

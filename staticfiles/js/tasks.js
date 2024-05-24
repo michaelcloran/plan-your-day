@@ -90,6 +90,14 @@ button.addEventListener("click", (e) => {
       }
     }
     editTaskModal.show();
+
+    const closeButton = document.getElementsByClassName("close");
+
+    closeButton[0].addEventListener("click", (e) => {
+      editTaskModal.hide();
+      editTaskForm.reset();
+    });
+
     //update clicked test for valid form
     editConfirm.addEventListener("click", (e) => {
 
