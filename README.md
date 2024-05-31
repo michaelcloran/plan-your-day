@@ -257,6 +257,18 @@ login screen mobile
 
 [Goto Top](#welcome)
 
+### logout navbar choice
+
+If you click on the logout navbar item the following image appears. Asking you to sign out.
+
+![Logout navbar item](images/images_docs/logout_navbar_item.png)
+
+if you click on Sign out it bring you to the Sign in page.
+
+### Register page
+
+If you click on the register navbar item you are brought to the register page which asks you for details, username, email and password.
+
 register screen desktop
 
 ![Register screen desktop](images/images_docs/register_screen_desktop.png)
@@ -293,15 +305,83 @@ Add Task form mobile
 
 This form assumes that you have created a category as a category is required in order to create a task. You can create a category by clicking on the navbar Categories item and then in the listing click on the Add Category button and add a category.
 
-This form has a dropdown for choice of category followed by a task name and task description then an is urgent checkbox which when checked sn Urgent prompt will appear on the task minimized accordion view. Then the date of the task has to be selected and the start time and end time. Then there is a flag Finished task which is used when you open the details of the task and click on edit you can when the task is finished update the end time and select Finished task checkbox which puts a message on the accordion view Finished in the view date view it shows finished tasks but in the todays date (home) view the finished tasks no longer show up and it is a means to unclutter the screen.
+This Add Task form has a dropdown for choice of category followed by a task name and task description then an is urgent checkbox which when checked sn Urgent prompt will appear on the task minimized accordion view. Then the date of the task has to be selected and the start time and end time. Then there is a flag Finished task which is used when you open the details of the task and click on edit you can when the task is finished update the end time and select Finished task checkbox which puts a message on the accordion view Finished in the view date view it shows finished tasks but in the todays date (home) view the finished tasks no longer show up and it is a means to unclutter the screen.
+
+Urgent prompt
+
+![Urgent prompt](images/images_docs/urgent_prompt.png)
+
+Finished prompt
+
+![Finished prompt](images/images_docs/finished_prompt.png)
 
 Note that the start time has to be less than the end time. If not a error prompt is shown prompting you to reset it.
+
+![Start time must be less than end time error](images/images_docs/start_time_must_be_less_than_end_time_error.png)
+
+Details of task1 desktop
+
+![Details of task1 desktop](images/images_docs/details_of_task1_desktop.png)
+
+Details of task1 mobile
+
+![Details of task1 mobile](images/images_docs/details_of_task1_mobile.png)
 
 <hr>
 
 [Goto Top](#welcome)
 
-categories listing via clicking on the categories navbar item
+if you click on the Delete button a bootstrap modal opens prompting you if you want to delete the task
+
+Delete task modal desktop
+
+![Delete task modal desktop](images/images_docs/delete_task_modal_desktop.png)
+
+Delete task modal mobile
+
+![Delete task modal mobile](images/images_docs/delete_task_modal_mobile.png)
+
+<hr>
+
+[Goto Top](#welcome)
+
+if you click on the edit button the edit bootstrap modal appears to edit the task details
+
+Edit task modal desktop
+
+![Edit task modal desktop](images/images_docs/edit_task_modal_desktop.png)
+
+Edit task modal mobile
+
+![Edit task modal mobile](images/images_docs/edit_task_modal_mobile.png)
+
+<hr>
+
+[Goto Top](#welcome)
+
+If you click on task1 again the accordion closes and shows the briefs of the task.
+
+<hr>
+
+[Goto Top](#welcome)
+
+### About Page
+
+The About page gives a basic introduction and below this introduction there is a contact form which submits to the database.
+
+About page desktop
+
+![About page desktop](images/images_docs/about_page_desktop.png)
+
+About page mobile
+
+![About page mobile1](images/images_docs/about_page_mobile1.png)
+
+![About page mobile2](images/images_docs/about_page_mobile2.png)
+
+### Categories page
+
+You can get a categories listing via clicking on the categories navbar item. If you have already created categories they will show up in a listing and if there is not categories created yet then a message No categories!! will display.
 
 Categories listing desktop
 
@@ -315,7 +395,7 @@ Categories listing mobile
 
 [Goto Top](#welcome)
 
-if you click on the Add Category button the Add Category form appears
+If you click on the Add Category button the Add Category form appears
 
 Add Category form desktop
 
@@ -325,21 +405,88 @@ Add Category form mobile
 
 ![Add category form mobile](images/images_docs/add_category_form_mobile.png)
 
+if you click on category delete button a delete modal appears
+
+![Delete category modal](images/images_docs/delete_category_modal.png)
+
+if you want to edit a category you select the edit green button and a bootstrap modal appears where you can edit the category name.
+
+![Edit category modal](images/images_docs/edit_category_modal.png)
+
 <hr>
 
 [Goto Top](#welcome)
 
-### About Page
+### Statistics page
 
-About page desktop
+The statistics page is for the generation of statistics which is run based on category. When you run the stats you get a listing of each task under a given category and it show the amount of hours and minutes on each task and then at the end it shows the total hours and minutes within the time frame chosen on a particular category.
 
-![About page desktop](images/images_docs/about_page_desktop.png)
+Statistics generation form desktop
 
-About page mobile
+![Statistics generation form desktop](images/images_docs/statistics_generation_form_desktop.png)
 
-![About page mobile1](images/images_docs/about_page_mobile1.png)
+Statistics generation form mobile
 
-![About page mobile2](images/images_docs/about_page_mobile2.png)
+![Statistics generation form mobile](images/images_docs/statistics_generation_form_mobile.png)
+
+Statistics desktop
+
+![Statistics desktop](images/images_docs/statistics_desktop.png)
+
+Statistics mobile
+
+![Statistics mobile](images/images_docs/statistics_mobile.png)
+
+The statistics results is shown in tables with task name and task date and then the amount of hours and minutes for that task. Then at the end it shows the total hours and minutes for all the tasks within the time frame for the particular category.
+
+<hr>
+
+[Goto Top](#welcome)
+
+### View Date page
+
+If you click on the view date navbar item you are brought to the view date form
+
+View date form desktop
+
+![View date form desktop](images/images_docs/view_date_form_desktop.png)
+
+View date form mobile
+
+![View date form mobile](images/images_docs/view_date_form_mobile.png)
+
+View date desktop
+
+![View date desktop](images/images_docs/view_date_desktop.png)
+
+View date mobile
+
+![View date mobile](images/images_docs/view_date_mobile.png)
+
+Note that the finished tasks show up on view by date and do not show up on the home page. This is to unclutter the task view for today as when a task is finished it should not show up under the task listing for today.
+
+<hr>
+
+[Goto Top](#welcome)
+
+### Footer
+
+The Footer is just to show a CopyRight notice and social media.
+
+![Footer bar](images/images_docs/footer_bar.png)
+
+### 500 page
+
+![500 page](images/images_docs/500_page.png)
+
+### 404 page
+
+![404 page](images/images_docs/404_page.png)
+
+### 403 page
+
+I also have a 403 error page which is similar to 500 and 404 but with the message, <h1>403</h1>
+        <h2>Ops you dont have access rights!!. please use the links to get back on track!!</h2>
 
 ## The manual for the system.
  website url: https://plan-your-day-95966d08599e.herokuapp.com/
