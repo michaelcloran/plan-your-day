@@ -712,6 +712,18 @@ Note that the finished tasks show up on view by date and do not show up on the h
 
 ### Statistics page
 
+![HTML validator Statistics page](images/images_docs/html_validator_statistics_page.png)
+
+### View Date page
+
+![HTML validator View Date page](images/images_docs/html_validator_view_date_page.png)
+
+### Logout page
+
+
+
+
+
 
 
 
