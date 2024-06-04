@@ -691,6 +691,15 @@ Note that the finished tasks show up on view by date and do not show up on the h
 
 ### HTML
 
+### Login page
+
+![HTML validator login page](images/images_docs/html_validator_login_page.png)
+
+### Register
+
+
+### Home
+
 
 
 

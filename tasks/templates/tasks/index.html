@@ -109,7 +109,7 @@
 
             <label for="id_category_id" class="form-label requiredField"> Category id<span class="asteriskField">*</span></label>
             <select name="category_id" class="select form-select" required size="1" id="id_category_id">
-
+                <option value="">Choose</option>
                 {% for category in categories %}
                 {% if category.author == user %}
                 <option value="{{category.id}}">{{category.category_name}}</option>
@@ -152,7 +152,7 @@
 
             <div class="mb-3">
               <label for="id_start_time" class="form-label requiredField">
-                  Start time<span class="asteriskField">*</span> <input type="button" id="start_time_ck" value="Set to current time"></label>
+                  Start time<span class="asteriskField">*</span> </label><input type="button" id="start_time_ck" value="Set to current time">
               <input type="time" name="start_time" class="timeinput form-control" required id="id_start_time">
               <div class="valid-feedback">Vaild.</div>
               <div class="invalid-feedback">
@@ -162,7 +162,7 @@
 
             <div class="mb-3">
               <label for="id_end_time" class="form-label requiredField">
-                  End time<span class="asteriskField">*</span> <input type="button" id="end_time_ck" value="Set to current time"> </label>
+                  End time<span class="asteriskField">*</span></label><input type="button" id="end_time_ck" value="Set to current time">
               <input type="time" name="end_time" class="timeinput form-control" required id="id_end_time">
               <div class="valid-feedback">Vaild.</div>
               <div class="invalid-feedback">
