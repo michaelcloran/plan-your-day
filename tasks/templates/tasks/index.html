@@ -23,14 +23,14 @@
                 <div class="accordion-item">
                   <h2 class="accordion-header">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#accordion{{task.id}}" aria-expanded="true" aria-controls="accordion{{task.id}}">
-                      <strong><h2>{{ task.task_name }}: &nbsp</h2></strong>
-                      <strong> Start:&nbsp </strong>{{task.start_time|date:"H:i"}}
-                      <strong> &nbsp End: &nbsp </strong>{{ task.end_time|date:"H:i"}}
+                      <strong>{{ task.task_name }}: &nbsp;</strong>
+                      <strong> Start:&nbsp; </strong>{{task.start_time|date:"H:i"}}
+                      <strong> &nbsp; End: &nbsp; </strong>{{ task.end_time|date:"H:i"}}
                       {% if task.is_urgent == True %}
-                        <strong class='urgent-task'>&nbsp &nbsp URGENT</strong>
+                        <strong class='urgent-task'>&nbsp; &nbsp; URGENT</strong>
                       {% endif %}
                       {% if task.finished_task == True %}
-                        <strong class='finished-task' style='color:green;'>&nbsp &nbsp Finished</strong>
+                        <strong class='finished-task' style='color:green;'>&nbsp; &nbsp; Finished</strong>
                       {% endif %}
                     </button>
                   </h2>
