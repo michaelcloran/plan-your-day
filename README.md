@@ -485,8 +485,22 @@ The Footer is just to show a CopyRight notice and social media.
 
 ### 403 page
 
-I also have a 403 error page which is similar to 500 and 404 but with the message, <h1>403</h1>
-        <h2>Ops you dont have access rights!!. please use the links to get back on track!!</h2>
+I also have a 403 error page which is similar to 500 and 404 but with the message, 403
+        Ops you don't have access rights!!. please use the links to get back on track!!
+
+<hr>
+
+[Goto Top](#welcome)
+
+### Admin page
+
+In the Django administration page it is possible for the superuser to administer the website as a whole. In this admin page it is possible to view all tasks and categories and to edit and delete them it is also possible to create them. It is also possible to edit and delete users and it is also possible to edit and update the about page contents. Note that when you submit the contact form on the About page it is possible for the superuser to view them by clicking on the contact form requests link and it shows all the contact requests.
+
+![Admin page](images/images_docs/admin_page.png)
+
+<hr>
+
+[Goto Top](#welcome)
 
 ## The manual for the system.
  website url: https://plan-your-day-95966d08599e.herokuapp.com/
@@ -670,6 +684,14 @@ Note that the finished tasks show up on view by date and do not show up on the h
 <hr>
 
 [Goto Top](#welcome)
+
+## Testing
+
+### Validation of code
+
+### HTML
+
+
 
 
 
