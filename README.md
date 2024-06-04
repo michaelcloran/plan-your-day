@@ -708,6 +708,13 @@ Note that the finished tasks show up on view by date and do not show up on the h
 
 ### Categories page
 
+![HTML validator Categories page](images/images_docs/html_validator_categories_page.png)
+
+### Statistics page
+
+
+
+
 
 
 
