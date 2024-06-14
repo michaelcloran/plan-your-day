@@ -11,19 +11,20 @@ urlpatterns = [
 
      path('statistics/', views.task_statistics, name='view_task_statistics'),
 
-     path('view-date/edit_task/<int:task_id>', views.task_edit, name='tasks_edit'),
+     path('view-date/edit_task/<int:task_id>', views.task_edit,
+          name='tasks_edit'),
      path('view-date/delete_task/<int:task_id>',
           views.task_delete, name='task_delete'),
 
-     path('<str:view_date>/edit_task/<int:task_id>', views.task_edit_with_date \
-          , name='tasks_edit_width_date'),
+     path('<str:view_date>/edit_task/<int:task_id>',
+          views.task_edit_with_date, name='tasks_edit_width_date'),
 
      path('<str:view_date>/delete_task/<int:task_id>',
           views.task_delete_with_date, name='task_delete_with_date'),
      path('view-date/<str:view_date>/delete_task/<int:task_id>',
           views.task_delete_with_date, name='task_delete_with_date'),
 
-     path('add_task/<str:foo>/',views.add_task, name='add_task' ),
+     path('add_task/<str:foo>/', views.add_task, name='add_task'),
 
      path('edit_task/<int:task_id>', views.task_edit, name='tasks_edit'),
      path('delete_task/<int:task_id>',
@@ -31,7 +32,7 @@ urlpatterns = [
 
      path('categories/', views.categories_listing, name='categories'),
      path('category/', views.category_listing, name='category'),
-     path('add_category/<str:foo>/',views.add_category, name='add_category' ),
+     path('add_category/<str:foo>/', views.add_category, name='add_category'),
 
      path('categories/edit_category/<int:category_id>',
           views.category_edit, name='category_edit'),

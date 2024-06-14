@@ -18,4 +18,4 @@ class TaskAdmin(admin.ModelAdmin):
     Allows listing of tasks by name and author
     """
 
-    list_display = ('task_name', 'author','date')
+    list_display = ('task_name', 'author', 'date')

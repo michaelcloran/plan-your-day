@@ -1,7 +1,4 @@
 
-const categoryForm = document.getElementById("categoryForm");
-const submitButton = document.getElementById("submitButton");
-
 const editModal = new bootstrap.Modal(document.getElementById("editModal"));
 const editButtons = document.getElementsByClassName("btn-edit");
 const editConfirm = document.getElementById("update");

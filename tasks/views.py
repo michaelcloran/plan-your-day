@@ -37,7 +37,7 @@ def home_view(request):
 
     categories = Category.objects.filter(author=request.user)
 
-    todays_date= todays_date.strftime("%a %B %d")
+    todays_date = todays_date.strftime("%a %B %d")
 
     context = {
         'date': todays_date,
@@ -77,7 +77,7 @@ def home_view2(request, view_date):
     categories = Category.objects.filter(author=request.user)
 
     view_date = datetime.strptime(view_date, "%Y-%m-%d").date()
-    view_date_obj= view_date.strftime("%a %B %d")
+    view_date_obj = view_date.strftime("%a %B %d")
 
     context = {
         'date': view_date_obj,
@@ -231,7 +231,7 @@ def add_task(request, foo):
             messages.add_message(request, messages.ERROR,
                                  'Error adding task!')
 
-            task_form = TasksForm(data=request.POST,request=request)
+            task_form = TasksForm(data=request.POST, request=request)
 
             return render(
                 request,
@@ -476,7 +476,7 @@ def tasks_date_view(request):
         categories = Category.objects.filter(author=request.user)
 
         view_date = datetime.strptime(date, "%Y-%m-%d").date()
-        view_date_obj= view_date.strftime("%a %B %d")
+        view_date_obj = view_date.strftime("%a %B %d")
 
         context = {
             'date': view_date_obj,
@@ -537,7 +537,8 @@ def task_statistics(request):
         category = request.POST.get('category_sel')
 
         tasks = Tasks.objects.filter(date__range=[date_from, date_to],
-                                     category_id=category, author=request.user).order_by('-date')
+                                     category_id=category,
+                                     author=request.user).order_by('-date')
 
         task_statistics_form = TaskStatistics(data=request.POST,
                                               request=request)

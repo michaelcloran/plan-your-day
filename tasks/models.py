@@ -2,12 +2,14 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.models import UserManager
 
+
 def randomString():
     """This function is used to set a random string
     to the slug
     """
     um = UserManager()
     return (um.make_random_password(length=25))
+
 
 # Create your models here.
 class Category(models.Model):
