@@ -110,9 +110,13 @@
 
 project URL (https://plan-your-day-95966d08599e.herokuapp.com/)
 
-This project aims to help you plan your day via timed tasks for today and tomorrow. When you first start it, register and login you will be on the home page and it will show a blank task list where you can add tasks for today. But the real power in this task list is to plan the next days workload the night before. This will allow a daily schedule for a say developer to follow!.
+This project aims to help you plan your day via timed tasks for today and tomorrow or a particular date. When you first start it, register and login you will be on the home page and it will show a blank task list where you can add tasks for today. But the real power in this task list is to plan the next days workload the night before. This will allow a daily schedule for a say developer to follow!.
 
 Note: That the tasks are timed and it will be possible to show stats on a daily/weekly/monthly basis. For instance how many hours in the week did you work on Code Institute's LMS. How many hours did you work on PP4 etc!.
+
+Note: For this system to work you have to create categories say job1, job2 etc and when you create a task then you choose a job and time window for that job on a particular date. Where the description for the job would narrow down what you are going to do in that time window. Then when you want to see a breakdown of tasks for a particular job you can navigate to statistics and choose a date from and to and a job and then you will get a tabulated results for each task for that job within the dates chosen and the hours and minutes are shown and date and task in a table and at the end they are totaled to show total hours and minutes on a particular job within the dates chosen.
+
+Jobs could be projects todo over a long period of time, where you can multitask the jobs/projects on a daily basis within time windows per day. The description would be crucial here to break down what exactly needs to be done within the time window on a particular date.
 
 ## Epics
 - 1. As a customer of the site I can register an account and then I have the ability to login and logout

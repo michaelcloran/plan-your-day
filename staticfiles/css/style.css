@@ -191,3 +191,8 @@ table tr td {
 
 }
 
+.errorlist {
+    font-weight: bold;
+    padding: 10px;
+    background-color:  #C73E1D;
+}
