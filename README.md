@@ -31,12 +31,15 @@
     + [404 page](#404-page)
     + [403 page](#403-page)
     + [Admin page](#admin-page)
+    + [Password Reset Page](#password-reset-page)
   * [The manual for the system.](#the-manual-for-the-system)
   * [Testing](#testing)
     + [Validation of code](#validation-of-code)
     + [HTML](#html)
     + [Login page](#login-page)
     + [Register](#register)
+    + [Password Reset Page](#password-reset-page-1)
+    + [Change Email Page](#change-email-page)
     + [Home page](#home-page)
     + [Add Task](#add-task)
     + [About page](#about-page)
@@ -104,7 +107,6 @@
     + [Credits](#credits)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 
 ## Scope of project
 
