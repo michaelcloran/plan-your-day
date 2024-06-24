@@ -609,6 +609,25 @@ In the Django administration page it is possible for the superuser to administer
 
 <hr>
 
+### Password Reset Page
+
+It is possible to reset the password for a user given an email address navigate to (https://plan-your-day-95966d08599e.herokuapp.com/accounts/password/reset/)
+enter the email address and press Reset my password button. Then a message will appear telling you that an email has been sent. In you Inbox or Spam folder you should receive an email from codeinstituteplanyourday@gmail.com telling you that a password reset has been initiated and you have to click on the link given to continue. Also below the link it shows the username accocianted with your email address and account asking to be reset.
+
+![Password reset form](images/images_docs/password_reset_form.png)
+
+![Password reset email sent](images/images_docs/password_reset_email_sent.png)
+
+![Password reset email](images/images_docs/password_reset_email.png)
+
+![Password reset change password form](images/images_docs/password_reset_change_password_form.png)
+
+If you are logged in and navigate to (https://plan-your-day-95966d08599e.herokuapp.com/accounts/password/reset/) you get the option to change email.
+
+![Password reset logged in](images/images_docs/password_reset_loggedin.png)
+
+![Password reset change email form](images/images_docs/password_reset_change_email_form.png)
+
 [Goto Top](#welcome)
 
 ## The manual for the system.
@@ -807,6 +826,20 @@ All pages were tested at the W3C Markup Validation Service (https://validator.w3
 ![HTML validator login page](images/images_docs/html_validator_login_page.png)
 
 ### Register
+
+<hr>
+
+[Goto Top](#welcome)
+
+### Password Reset Page
+
+![HTML Validator password reset page](images/images_docs/html_validator_password_reset_page.png)
+
+NOTE: The warning here is from the allauth files.
+
+### Change Email Page
+
+![HTML validator change email form](images/images_docs/html_validator_change_email_form.png)
 
 <hr>
 
