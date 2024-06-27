@@ -6,7 +6,7 @@
 
 {% if user.is_authenticated %}
 <div class="container h-100">
-    <a href="{% url 'category' %}" class="btn btn-outline-primary right">Add Category</a>
+    <a href="{% url 'category' %}" class="btn btn-outline-primary right"><span style="color:rgb(2, 49, 121);">Add Category</span></a>
     <!-- Displaying categories -->
   <div class="row d-flex justify-content-center align-content-center h-100">
     <div class="col-12">
@@ -27,7 +27,9 @@
             </div>
 
             <button class="btn btn-delete"
-                data-category_id="{{ category.id }}">Delete</button>
+                data-category_id="{{ category.id }}">
+                <span style="color:rgb(3, 3, 3); background-color:rgb(243, 127, 88);">
+                  Delete</span></button>
             <button class="btn btn-edit"
                 data-category_id="{{ category.id }}">Edit</button>
             <hr>
@@ -62,6 +64,7 @@
 
           {% csrf_token %}
           <div class="mb-3 mt-3">
+            <label for="id_category_name">Category Name</label>
             <input type="text" name="category_name" maxlength="25" required id="id_category_name">
             <div class="valid-feedback">Vaild.</div>
               <div class="invalid-feedback">

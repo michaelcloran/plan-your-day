@@ -687,7 +687,7 @@ Add Task form mobile
 
 ![Add task form mobile](images/images_docs/add_task_form_mobile.png)
 
-Note on this form that the start time must be less than the end time or a message pops up prompting you to change the start time. Also note that the categories listing in the dropdown combo box is categories specific to the logged in user. Also note that in order to add a task there must be at least one category created via clicking on the categories link on the navbar and then clicking on the Add Category button.
+Note on this form that the start time must be less than the end time or a message pops up prompting you to change the start time. Also note that the categories listing in the dropdown combo box is categories specific to the logged in user. Also note that in order to add a task there must be at least one category created via clicking on the categories link on the navbar and then clicking on the Add Category button. Also note that you can enter dates previous to todays date, this allows when on a job to enter the task later when you have time. When you enter a date other than todays date the task list is for that date in order for you to manage tasks for a particular date but when you click on the home navbar item it shows tasks just for todays date.
 
 <hr>
 
@@ -941,8 +941,6 @@ Both JavaScript files category.js and tasks.js were validated through JSHint (ht
 
 ![JavaScript tasks.js script](images/images_docs/javascript_validator_tasks_script.png)
 
-![JavaScript tasks.js script screengrab 2](images/images_docs/javascript_validator_tasks_script_2.png)
-
 <hr>
 
 [Goto Top](#welcome)
@@ -1076,7 +1074,27 @@ Tests in Lighthouse were performed for both desktop and mobile
 
 Wave Webaim (https://wave.webaim.org/)
 
-A Note on Wave Webaim: My site is a login required site and with Webaim it is not possible to login and view a logged in page through it so sadly I could not debug further with Wave Webaim!!.
+#### Home Page
+
+![Wave WebAim Home page](images/images_docs/wave_webaim_home_page.png)
+
+#### About Page
+
+![Wave WebAim About Page](images/images_docs/wave_webaim_about_page.png)
+
+#### Categories Page
+
+![Wave WebAim Categories Page](images/images_docs/wave_webaim_categories_page.png)
+
+#### Statistics Page
+
+![Wave WebAim Statistics Page](images/images_docs/wave_webaim_statistics_page.png)
+
+Note: 1 error is shown here which is for an empty table header. This is meant to be blank!.
+
+#### View Date Page
+
+![Wave WebAim View Date Page](images/images_docs/wave_webaim_view_date_page.png)
 
 <hr>
 
