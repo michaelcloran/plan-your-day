@@ -83,22 +83,28 @@
       - [View Date desktop](#view-date-desktop)
       - [View Date mobile](#view-date-mobile)
     + [Wave Webaim - accessibility testing](#wave-webaim---accessibility-testing)
+      - [Home Page](#home-page-1)
+      - [About Page](#about-page-1)
+      - [Categories Page](#categories-page)
+      - [Statistics Page](#statistics-page)
+      - [View Date Page](#view-date-page)
+    + [Automated testing](#automated-testing)
     + [Manual Testing](#manual-testing)
       - [Navigation bar](#navigation-bar-1)
       - [Login page](#login-page-1)
       - [Register page](#register-page-1)
       - [Logout page](#logout-page-1)
-      - [Home Page](#home-page-1)
+      - [Home Page](#home-page-2)
       - [Add Task form](#add-task-form)
       - [Documentation button](#documentation-button)
       - [Tasks](#tasks)
       - [Task Edit](#task-edit)
       - [Task delete](#task-delete)
-      - [About Page](#about-page-1)
-      - [Categories Page](#categories-page)
+      - [About Page](#about-page-2)
+      - [Categories Page](#categories-page-1)
       - [Add Category](#add-category-1)
-      - [Statistics Page](#statistics-page)
-      - [View Date Page](#view-date-page)
+      - [Statistics Page](#statistics-page-1)
+      - [View Date Page](#view-date-page-1)
       - [404 Page](#404-page)
       - [500 Page](#500-page)
       - [Footer](#footer-1)
@@ -107,6 +113,7 @@
     + [Credits](#credits)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 ## Scope of project
 
@@ -235,6 +242,8 @@ Desktop
 Mobile
 
 ![Mobile Task List Home](images/images_docs/mobile_task_list_home.png)
+
+Note: Since the wireframes were created I found that encapsulating the task contents into a tab on an accordion was a better user experience!.
 
 <hr>
 
@@ -1099,6 +1108,12 @@ Note: 1 error is shown here which is for an empty table header. This is meant to
 <hr>
 
 [Goto Top](#welcome)
+
+### Automated testing
+
+Basic automated testing is carried out with 7 tests.
+
+![Automated testing CUD](images/images_docs/automated_tests_basic_CUD.png)
 
 ### Manual Testing
 
